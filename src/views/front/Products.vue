@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="products">
     <Banner></Banner>
     <div class="container mt-md-5 mt-3 mb-7">
       <div class="row">
@@ -10,8 +10,8 @@
           >
             <div class="card border-0">
               <div
-                class="card-header px-0 py-4 bg-white
-                border border-bottom-0 border-top border-left-0 border-right-0"
+                class="card-header px-0 py-4 bg-white border
+                border-bottom-0 border-top border-left-0 border-right-0"
                 id="headingOne"
                 data-toggle="collapse"
                 data-target="#collapseOne"
@@ -50,8 +50,8 @@
             </div>
             <div class="card border-0">
               <div
-                class="card-header px-0 py-4 bg-white
-                border border-bottom-0 border-top border-left-0 border-right-0"
+                class="card-header px-0 py-4 bg-white border
+                border-bottom-0 border-top border-left-0 border-right-0"
                 id="headingTwo"
                 data-toggle="collapse"
                 data-target="#collapseTwo"
@@ -132,7 +132,7 @@
         </div>
         <div class="col-md-8">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" v-for="(item, i) in filterCategory" :key="i">
               <div class="card border-0 mb-4 position-relative position-relative">
                 <img
                   src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
@@ -144,175 +144,7 @@
                 </a>
                 <div class="card-body p-0">
                   <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">Lorem ipsum</a>
+                    <a href="./detail.html">{{ item.title }}</a>
                   </h4>
                   <p class="card-text mb-0">
                     NT$1,080
@@ -354,8 +186,8 @@
     <div class="bg-light py-4">
       <div class="container">
         <div
-          class="d-flex flex-column flex-md-row
-          justify-content-between align-items-md-center align-items-start"
+          class="d-flex flex-column flex-md-row justify-content-between
+          align-items-md-center align-items-start"
         >
           <p class="mb-0 font-weight-bold">Lorem ipsum dolor sit amet.</p>
           <div class="input-group w-md-50 mt-md-0 mt-3">
@@ -390,8 +222,8 @@
           </ul>
         </div>
         <div
-          class="d-flex flex-column flex-md-row
-          justify-content-between align-items-md-end align-items-start text-white"
+          class="d-flex flex-column flex-md-row justify-content-between
+          align-items-md-end align-items-start text-white"
         >
           <div class="mb-md-0 mb-1">
             <p class="mb-0">02-3456-7890</p>
@@ -408,9 +240,44 @@
 import Banner from '@/components/front/Banner.vue';
 
 export default {
-  name: 'Index',
+  name: 'Products',
   components: {
     Banner,
+  },
+  data() {
+    return {
+      products: [],
+      isLoading: false,
+      category: 'all',
+    };
+  },
+  created() {
+    this.getProducts();
+  },
+  methods: {
+    getProducts(page = 1) {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/products?page=${page}`;
+      this.axios
+        .get(url)
+        .then((res) => {
+          this.products = res.data.data;
+          console.log(this.products);
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          console.log(err);
+          this.isLoading = false;
+        });
+    },
+  },
+  computed: {
+    filterCategory() {
+      if (this.category === 'all') {
+        return this.products;
+      }
+      return this.products.filter((item) => item.category === this.category);
+    },
   },
 };
 </script>
