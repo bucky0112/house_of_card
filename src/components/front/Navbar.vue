@@ -12,7 +12,7 @@
           <b-nav-item href="#" to="/">Home</b-nav-item>
           <b-nav-item href="#" to="/Products">Products</b-nav-item>
           <b-nav-item href="#" to="/About">About</b-nav-item>
-          <b-nav-item href="#" to="">
+          <b-nav-item href="#" to="/Cart">
             <b-icon icon="cart3"></b-icon>
           </b-nav-item>
         </b-navbar-nav>

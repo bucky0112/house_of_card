@@ -1,0 +1,166 @@
+<template>
+  <div class="container auth">
+    <div class="auth__header">
+      <div class="auth__logo">
+        <img
+          height="90"
+          src="@/assets/logo.png"
+          alt="Vue logo"
+        />
+      </div>
+    </div>
+    <div class="auth__body">
+      <form class="form-signin auth__form" autocomplete="off" @submit.prevent="signin">
+        <div class="auth__form_body">
+          <h1 class="h3 auth__form_title">使用者登入</h1>
+          <div>
+            <div class="form-label-group mb-3">
+              <label class="text-uppercase small" for="inputEmail">Email</label>
+              <input
+                type="email"
+                id="inputEmail"
+                name="email"
+                class="form-control"
+                placeholder="請輸入 email"
+                required
+                autofocus
+                v-model="user.email"
+              />
+            </div>
+            <div class="form-label-group">
+              <label class="text-uppercase small" for="inputPassword">密碼</label>
+              <input
+                type="password"
+                id="inputPassword"
+                name="password"
+                class="form-control"
+                placeholder="請輸入密碼"
+                required
+                v-model="user.password"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="auth__form_actions">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">登入</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+body {
+  font-family: "Roboto", sans-serif;
+}
+.auth {
+  &__header {
+    padding: 13vh 1rem calc(11vh + 35px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    background-image: linear-gradient(#3280e4, #584dc3);
+    // background-image: url(https://picsum.photos/1500/1200/?random);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    box-shadow: 0 3px 5px rgba(#000, 0.3);
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      // background-image: linear-gradient(rgba(#000, 0), rgba(#000, 0.7));
+    }
+  }
+  &__logo {
+    position: relative;
+    z-index: 18;
+    background: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 7px rgba(#000, 0.15);
+    overflow: hidden;
+  }
+  &__body {
+    padding-bottom: 2rem;
+  }
+  &__form {
+    min-width: 280px;
+    max-width: 340px;
+    margin: auto;
+    margin-top: -40px;
+    padding: 0 10px;
+    position: relative;
+    z-index: 9;
+    &_body {
+      padding: 0.7rem 1.5rem 35px;
+      border-radius: 0.5rem;
+      background: #fff;
+      border: 1px solid #eee;
+      box-shadow: 0 4px 10px rgba(#000, 0.15);
+    }
+    &_title {
+      font-size: 1.3rem;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    &_actions {
+      text-align: center;
+      padding: 0 2rem;
+      margin-top: -25px;
+      .btn {
+        border-radius: 30px;
+        box-shadow: 0 2px 12px rgba(#3280e4, 0.5);
+      }
+    }
+  }
+}
+</style>
+
+<script>
+import Toast from '@/plugins/Toast';
+
+export default {
+  data() {
+    return {
+      user: {
+        email: '',
+        password: '',
+      },
+    };
+  },
+  methods: {
+    signin() {
+      const api = `${process.env.VUE_APP_APIPATH}/api/auth/login`;
+      this.axios
+        .post(api, this.user)
+        .then((res) => {
+          const { token } = res.data;
+          const { expired } = res.data.expired;
+          document.cookie = `token=${token};expires=${new Date(
+            expired * 1000,
+          )};`;
+          this.$router.push('/admin/products');
+          Toast.fire({
+            title: '登入成功',
+            icon: 'success',
+          });
+        })
+        .catch(() => {
+          Toast.fire({
+            title: '帳號或密碼錯誤',
+            icon: 'error',
+          });
+          this.user.email = '';
+          this.user.password = '';
+        });
+    },
+  },
+};
+</script>

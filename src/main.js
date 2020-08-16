@@ -7,15 +7,15 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import App from './App.vue';
 import router from './router';
 import './assets/all.scss';
+import thousandsFilter from './filters/thousands';
 
 Vue.config.productionTip = false;
 
 Vue.use(VueAxios, axios);
-// Install BootstrapVue
 Vue.use(BootstrapVue);
-// Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 Vue.component('Loading', Loading);
+Vue.filter('thousands', thousandsFilter);
 
 new Vue({
   router,

@@ -1,254 +1,71 @@
 <template>
   <div class="products">
+    <loading :active.sync="isLoading"></loading>
     <Banner></Banner>
-    <div class="container mt-md-5 mt-3 mb-7">
-      <div class="row">
-        <div class="col-md-4">
-          <div
-            class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3"
-            id="accordionExample"
-          >
-            <div class="card border-0">
-              <div
-                class="card-header px-0 py-4 bg-white border
-                border-bottom-0 border-top border-left-0 border-right-0"
-                id="headingOne"
-                data-toggle="collapse"
-                data-target="#collapseOne"
-              >
-                <div class="d-flex justify-content-between align-items-center pr-1">
-                  <h4 class="mb-0">Lorem ipsum</h4>
-                  <i class="fas fa-chevron-down"></i>
-                </div>
-              </div>
-              <div
-                id="collapseOne"
-                class="collapse show"
-                aria-labelledby="headingOne"
-                data-parent="#accordionExample"
-              >
-                <div class="card-body py-0">
-                  <ul class="list-unstyled">
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card border-0">
-              <div
-                class="card-header px-0 py-4 bg-white border
-                border-bottom-0 border-top border-left-0 border-right-0"
-                id="headingTwo"
-                data-toggle="collapse"
-                data-target="#collapseTwo"
-              >
-                <div class="d-flex justify-content-between align-items-center pr-1">
-                  <h4 class="mb-0">Lorem ipsum</h4>
-                  <i class="fas fa-chevron-down"></i>
-                </div>
-              </div>
-              <div
-                id="collapseTwo"
-                class="collapse"
-                aria-labelledby="headingTwo"
-                data-parent="#accordionExample"
-              >
-                <div class="card-body py-0">
-                  <ul class="list-unstyled">
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card border-0">
-              <div
-                class="card-header px-0 py-4 bg-white border
-                border-bottom-0 border-top border-left-0 border-right-0"
-                id="headingThree"
-                data-toggle="collapse"
-                data-target="#collapseThree"
-              >
-                <div class="d-flex justify-content-between align-items-center pr-1">
-                  <h4 class="mb-0">Lorem ipsum</h4>
-                  <i class="fas fa-chevron-down"></i>
-                </div>
-              </div>
-              <div
-                id="collapseThree"
-                class="collapse"
-                aria-labelledby="headingThree"
-                data-parent="#accordionExample"
-              >
-                <div class="card-body py-0">
-                  <ul class="list-unstyled">
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                    <li>
-                      <a href="#" class="py-2 d-block text-muted">Lorem ipsum</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-md-6" v-for="(item, i) in filterCategory" :key="i">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img
-                  src="https://images.unsplash.com/photo-1591843336741-9f1238f66758?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <a href="./detail.html">{{ item.title }}</a>
-                  </h4>
-                  <p class="card-text mb-0">
-                    NT$1,080
-                    <span class="text-muted">
-                      <del>NT$1,200</del>
-                    </span>
-                  </p>
-                  <p class="text-muted mt-3"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <nav class="d-flex justify-content-center">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <div class="bg-light py-4">
-      <div class="container">
-        <div
-          class="d-flex flex-column flex-md-row justify-content-between
-          align-items-md-center align-items-start"
+    <b-container class="mt-md-5 mt-3 mb-7">
+      <b-card-group
+        class="card-group"
+        v-for="row in formattedProducts"
+        :key="row.id"
+        deck
+      >
+        <b-card
+          border-variant="light"
+          :key="filterCategory.id"
+          v-for="filterCategory in row"
+          :header="filterCategory.title"
+          img-top
+          class="card mb-4"
         >
-          <p class="mb-0 font-weight-bold">Lorem ipsum dolor sit amet.</p>
-          <div class="input-group w-md-50 mt-md-0 mt-3">
-            <input type="text" class="form-control rounded-0" placeholder />
-            <div class="input-group-append">
-              <button class="btn btn-dark rounded-0" type="button" id="search">Lorem ipsum</button>
+          <router-link :to="`/product/${filterCategory.id}`">
+            <b-card-img :src="filterCategory.imageUrl[0]"></b-card-img>
+          </router-link>
+          <b-badge variant="dark" class="float-right ml-2">{{ filterCategory.category }}</b-badge>
+          <b-card-text>
+            <div v-if="!filterCategory.price" class="h5">
+              {{ filterCategory.origin_price | thousands }}
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bg-dark py-5">
-      <div class="container">
-        <div class="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
-          <a class="text-white h4" href="./index.html">LOGO</a>
-          <ul class="d-flex list-unstyled mb-0 h4">
-            <li>
-              <a href="#" class="text-white mx-3">
-                <i class="fab fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="text-white mx-3">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="text-white ml-3">
-                <i class="fab fa-line"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="d-flex flex-column flex-md-row justify-content-between
-          align-items-md-end align-items-start text-white"
-        >
-          <div class="mb-md-0 mb-1">
-            <p class="mb-0">02-3456-7890</p>
-            <p class="mb-0">service@mail.com</p>
-          </div>
-          <p class="mb-0">© 2020 LOGO All Rights Reserved.</p>
-        </div>
-      </div>
-    </div>
+            <!-- 反之，就顯示 origin_price 與 price -->
+            <div v-else>
+              <del class="h6">{{ filterCategory.origin_price | thousands }}</del>
+              <div class="h5 text-primary">{{ filterCategory.price | thousands }}</div>
+            </div>
+          </b-card-text>
+          <template v-slot:footer>
+            <b-button pill
+              variant="outline-primary"
+              @click="addToCart(filterCategory.id)">加到購物車</b-button>
+          </template>
+        </b-card>
+      </b-card-group>
+    </b-container>
+    <Pagination :pages="pagination" @emitPages="getProducts"></Pagination>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Banner from '@/components/front/Banner.vue';
+import Pagination from '@/components/Pagination.vue';
+import Footer from '@/components/front/Footer.vue';
 
 export default {
   name: 'Products',
   components: {
     Banner,
+    Pagination,
+    Footer,
   },
   data() {
     return {
       products: [],
       isLoading: false,
       category: 'all',
+      pagination: {},
+      tempProduct: {},
+      status: {
+        loadingItem: '',
+      },
     };
   },
   created() {
@@ -262,11 +79,26 @@ export default {
         .get(url)
         .then((res) => {
           this.products = res.data.data;
-          console.log(this.products);
+          this.pagination = res.data.meta.pagination;
           this.isLoading = false;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          this.isLoading = false;
+        });
+    },
+    addToCart(id, quantity = 1) {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
+      const cart = {
+        product: id,
+        quantity,
+      };
+      this.axios
+        .post(url, cart)
+        .then(() => {
+          this.isLoading = false;
+        })
+        .catch(() => {
           this.isLoading = false;
         });
     },
@@ -278,6 +110,22 @@ export default {
       }
       return this.products.filter((item) => item.category === this.category);
     },
+    formattedProducts() {
+      return this.filterCategory.reduce((c, n, i) => {
+        if (i % 4 === 0) c.push([]);
+        c[c.length - 1].push(n);
+        return c;
+      }, []);
+    },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.card-group .card {
+  max-width: 25%;
+}
+// .card-deck .card {
+//   max-width: calc(25% -30px);
+// }
+</style>
