@@ -16,6 +16,7 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.component('Loading', Loading);
 Vue.filter('thousands', thousandsFilter);
+Vue.prototype.$bus = new Vue();
 
 new Vue({
   router,

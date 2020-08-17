@@ -1,111 +1,67 @@
 <template>
   <div>
-    <loading :active.sync="isLoading"/>
+    <loading :active.sync="isLoading" />
     <div class="container">
       <div class="mt-3">
-        <h3 class="mt-3 mb-4">Lorem ipsum</h3>
+        <h3 class="mt-3 mb-4">購物車</h3>
         <div class="row">
           <div class="col-md-8">
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col" class="border-0 pl-0">Lorem ipsum</th>
-                  <th scope="col" class="border-0">Lorem ipsum</th>
-                  <th scope="col" class="border-0">Lorem ipsum</th>
+                  <th scope="col" class="border-0 pl-0">產品名稱</th>
+                  <th scope="col" class="border-0">購買數量</th>
+                  <th scope="col" class="border-0">產品價格</th>
                   <th scope="col" class="border-0"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-bottom border-top">
+                <tr class="border-bottom border-top" v-for="(item, i) in cart" :key="i">
                   <th scope="row" class="border-0 px-0 font-weight-normal py-4">
                     <img
-                      src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-                      alt
-                      style="width: 72px; height: 72px; object-fit: cover;"
+                      :src="item.product.imageUrl[0]"
+                      :alt="item.product.title"
+                      style="width: 50px; height: 50px; object-fit: cover;"
                     />
-                    <p class="mb-0 font-weight-bold ml-3 d-inline-block">Lorem ipsum</p>
+                    <p class="mb-0 font-weight-bold ml-3 d-inline-block">
+                      {{ item.product.title }}
+                    </p>
                   </th>
                   <td class="border-0 align-middle" style="max-width: 160px;">
-                    <div class="input-group pr-5">
-                      <div class="input-group-prepend">
-                        <button
-                          class="btn btn-outline-dark border-0 py-2"
-                          type="button"
-                          id="button-addon1"
+                    <b-input-group class="my-3 mr-2 bg-light rounded">
+                      <template v-slot:prepend>
+                        <b-button
+                          variant="outline-dark"
+                          :disabled="item.quantity <= 1"
+                          @click="updateQuantity(item.product.id, item.quantity - 1)"
                         >
-                          <i class="fas fa-minus"></i>
-                        </button>
-                      </div>
+                          <b-icon icon="dash-circle"></b-icon>
+                        </b-button>
+                      </template>
                       <input
                         type="text"
-                        class="form-control border-0 text-center my-auto shadow-none"
+                        class="form-control border-0 text-center my-auto shadow-none bg-light"
                         placeholder
-                        aria-label="Example text with button addon"
-                        aria-describedby="button-addon1"
-                        value="1"
+                        min="1"
+                        v-model="item.quantity"
                       />
-                      <div class="input-group-append">
-                        <button
-                          class="btn btn-outline-dark border-0 py-2"
-                          type="button"
-                          id="button-addon2"
+                      <template v-slot:append>
+                        <b-button
+                          variant="outline-dark"
+                          @click="updateQuantity(item.product.id, item.quantity + 1)"
                         >
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
+                          <b-icon icon="plus-circle"></b-icon>
+                        </b-button>
+                      </template>
+                    </b-input-group>
                   </td>
                   <td class="border-0 align-middle">
-                    <p class="mb-0 ml-auto">NT$12,000</p>
+                    <p class="mb-0 ml-auto">{{ item.product.price * item.quantity | thousands }}</p>
                   </td>
                   <td class="border-0 align-middle">
-                    <i class="fas fa-times"></i>
-                  </td>
-                </tr>
-                <tr class="border-bottom">
-                  <th scope="row" class="border-0 px-0 font-weight-normal py-4">
-                    <img
-                      src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-                      alt
-                      style="width: 72px; height: 72px; object-fit: cover;"
-                    />
-                    <p class="mb-0 font-weight-bold ml-3 d-inline-block">Lorem ipsum</p>
-                  </th>
-                  <td class="border-0 align-middle" style="max-width: 160px;">
-                    <div class="input-group pr-5">
-                      <div class="input-group-prepend">
-                        <button
-                          class="btn btn-outline-dark border-0 py-2"
-                          type="button"
-                          id="button-addon1"
-                        >
-                          <i class="fas fa-minus"></i>
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        class="form-control border-0 text-center my-auto shadow-none"
-                        placeholder
-                        aria-label="Example text with button addon"
-                        aria-describedby="button-addon1"
-                        value="1"
-                      />
-                      <div class="input-group-append">
-                        <button
-                          class="btn btn-outline-dark border-0 py-2"
-                          type="button"
-                          id="button-addon2"
-                        >
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="border-0 align-middle">
-                    <p class="mb-0 ml-auto">NT$12,000</p>
-                  </td>
-                  <td class="border-0 align-middle">
-                    <i class="fas fa-times"></i>
+                    <a href="#" @click.prevent="removeCartItem(item.product.id)">
+                      <b-icon icon="x-circle"></b-icon>
+                    </a>
                   </td>
                 </tr>
               </tbody>
@@ -312,8 +268,8 @@
           </ul>
         </div>
         <div
-          class="d-flex flex-column flex-md-row justify-content-between
-          align-items-md-end align-items-start text-white"
+          class="d-flex flex-column flex-md-row
+          justify-content-between align-items-md-end align-items-start text-white"
         >
           <div class="mb-md-0 mb-1">
             <p class="mb-0">02-3456-7890</p>
@@ -346,6 +302,53 @@ export default {
         .then((res) => {
           this.cart = res.data.data;
           this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    },
+    removeAllCartItem() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping/all/product`;
+      this.axios
+        .delete(url)
+        .then(() => {
+          this.isLoading = false;
+          this.$bus.$emit('updateCart');
+          this.getCart();
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    },
+    removeCartItem(id) {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
+      this.axios
+        .delete(url)
+        .then(() => {
+          this.isLoading = false;
+          this.$bus.$emit('updateCart');
+          this.getCart();
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    },
+    updateQuantity(id, num) {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
+      if (num <= 0) return;
+      const data = {
+        product: id,
+        quantity: num,
+      };
+      this.axios
+        .patch(url, data)
+        .then(() => {
+          this.isLoading = false;
+          this.$bus.$emit('updateCart');
+          this.getCart();
         })
         .catch(() => {
           this.isLoading = false;

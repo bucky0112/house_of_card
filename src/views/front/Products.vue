@@ -96,6 +96,7 @@ export default {
       this.axios
         .post(url, cart)
         .then(() => {
+          this.$bus.$emit('updateCart');
           this.isLoading = false;
         })
         .catch(() => {
