@@ -1,9 +1,18 @@
 <template>
-  <div>
+  <div class="cart">
     <loading :active.sync="isLoading" />
     <div class="container">
-      <div class="mt-3">
-        <h3 class="mt-3 mb-4">購物車</h3>
+      <div v-if="!cart[0]" class="d-flex justify-content-center">
+        <div>
+          <h2>您的購物車沒有商品唷，請回商品頁面選購吧～</h2>
+          <router-link to="/products"
+            class="text-dark mt-5 mt-3 h5">
+            <i class="fas fa-chevron-left mr-2"></i>
+            繼續購物
+          </router-link>
+        </div>
+      </div>
+      <div class="mt-3" v-else>
         <div class="row">
           <div class="col-md-8">
             <table class="table">
@@ -93,11 +102,16 @@
                 </tbody>
               </table>
               <div class="d-flex justify-content-between mt-4">
-                <p class="mb-0 h4 font-weight-bold">Total</p>
-                <p class="mb-0 h4 font-weight-bold">{{ updateCartTotal | thousands }}</p>
+                <p class="mb-0 h4 font-weight-bold">總計</p>
+                <p class="mb-0 h4 font-weight-bold" v-if="coupon.enabled">
+                  {{ Math.round(updateCartTotal * ((100 - coupon.percent) / 100)) | thousands }}
+                </p>
+                <p class="mb-0 h4 font-weight-bold" v-else>{{ updateCartTotal | thousands }}</p>
               </div>
               <a href="#" class="btn btn-info btn-block mt-4" @click.passive="useCoupon">使用優惠碼</a>
-              <a href="#" class="btn btn-dark btn-block mt-4">結帳去</a>
+              <router-link to="/order" class="btn btn-dark btn-block mt-4" :coupon="coupon">
+                結帳去
+              </router-link>
             </div>
           </div>
         </div>
@@ -202,7 +216,6 @@ export default {
         })
         .then((res) => {
           this.coupon = res.data.data;
-          console.log(this.coupon);
           this.isLoading = false;
         })
         .catch(() => {
