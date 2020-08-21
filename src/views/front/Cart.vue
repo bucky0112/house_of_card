@@ -13,20 +13,25 @@
         </div>
       </div>
       <div class="mt-3" v-else>
-        <div class="row">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <ProgressBar></ProgressBar>
+          </div>
+        </div>
+        <div class="row mt-5">
           <div class="col-md-8">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col" class="border-0 pl-0">產品名稱</th>
-                  <th scope="col" class="border-0">購買數量</th>
-                  <th scope="col" class="border-0">產品價格</th>
-                  <th scope="col" class="border-0"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="border-bottom border-top" v-for="(item, i) in cart" :key="i">
-                  <th scope="row" class="border-0 px-0 font-weight-normal py-4">
+            <b-table-simple hover responsive fixed>
+              <b-thead>
+                <b-tr>
+                  <b-th class="border-0 pl-0">產品名稱</b-th>
+                  <b-th class="border-0">購買數量</b-th>
+                  <b-th class="border-0">產品價格</b-th>
+                  <b-th class="border-0"></b-th>
+                </b-tr>
+              </b-thead>
+              <b-tbody>
+                <b-tr class="border-bottom border-top" v-for="(item, i) in cart" :key="i">
+                  <b-th class="border-0 px-0 font-weight-normal py-4">
                     <img
                       :src="item.product.imageUrl[0]"
                       :alt="item.product.title"
@@ -35,8 +40,8 @@
                     <p class="mb-0 font-weight-bold ml-3 d-inline-block">
                       {{ item.product.title }}
                     </p>
-                  </th>
-                  <td class="border-0 align-middle" style="max-width: 160px;">
+                  </b-th>
+                  <b-td class="border-0 align-middle" style="max-width: 160px;">
                     <b-input-group class="my-3 mr-2 bg-light rounded">
                       <template v-slot:prepend>
                         <b-button
@@ -62,9 +67,9 @@
                         </b-button>
                       </template>
                     </b-input-group>
-                  </td>
+                  </b-td>
                   <td class="border-0 align-middle">
-                    <p class="mb-0 ml-auto">{{ item.product.price * item.quantity | thousands }}</p>
+                    <p class="mb-0 ml-auto">{{ item.product.price | thousands }}</p>
                   </td>
                   <td class="border-0 align-middle">
                     <b-button variant="outline-dark"
@@ -72,44 +77,32 @@
                       <b-icon icon="x-circle"></b-icon>
                     </b-button>
                   </td>
-                </tr>
-              </tbody>
-            </table>
+                </b-tr>
+              </b-tbody>
+            </b-table-simple>
           </div>
           <div class="col-md-4">
             <div class="border p-4 mb-4">
               <h4 class="font-weight-bold mb-4">詳細訂單內容</h4>
-              <table class="table text-muted border-bottom">
-                <tbody>
-                  <tr>
-                    <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">全部金額</th>
-                    <td class="text-right border-0 px-0 pt-4">{{ updateCartTotal | thousands }}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="border-0 px-0 pt-0 pb-4 font-weight-normal">
-                      <label for="input-coupon">優惠碼</label>
-                    </th>
-                    <td class="text-right border-0 px-0 pt-0 pb-4">
-                      <b-input-group>
-                        <b-form-input
-                          type="text"
-                          id="input-coupon"
-                          v-model="couponCode"
-                          placeholder="請輸入優惠碼"/>
-                      </b-input-group>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <b-table-simple class="text-muted border-bottom">
+                <b-tbody>
+                  <b-tr v-for="(item, i) in cart" :key="i">
+                    <b-th class="border-0 px-0 pt-4 font-weight-normal">
+                      {{ item.quantity }} {{ item.product.unit }}
+                    </b-th>
+                    <b-td class="text-right border-0 px-0 pt-4">
+                      {{ item.product.price * item.quantity | thousands }}
+                    </b-td>
+                  </b-tr>
+                </b-tbody>
+              </b-table-simple>
               <div class="d-flex justify-content-between mt-4">
                 <p class="mb-0 h4 font-weight-bold">總計</p>
-                <p class="mb-0 h4 font-weight-bold" v-if="coupon.enabled">
-                  {{ Math.round(updateCartTotal * ((100 - coupon.percent) / 100)) | thousands }}
+                <p class="mb-0 h4 font-weight-bold">
+                  {{ updateCartTotal | thousands }}
                 </p>
-                <p class="mb-0 h4 font-weight-bold" v-else>{{ updateCartTotal | thousands }}</p>
               </div>
-              <a href="#" class="btn btn-info btn-block mt-4" @click.passive="useCoupon">使用優惠碼</a>
-              <router-link to="/order" class="btn btn-dark btn-block mt-4" :coupon="coupon">
+              <router-link to="/order" class="btn btn-dark btn-block mt-4">
                 結帳去
               </router-link>
             </div>
@@ -122,10 +115,12 @@
 </template>
 
 <script>
+import ProgressBar from '@/components/front/ProgressBar.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
   components: {
+    ProgressBar,
     Footer,
   },
   data() {
@@ -133,8 +128,6 @@ export default {
       cart: [],
       isLoading: false,
       cartTotal: 0,
-      coupon: {},
-      couponCode: '',
     };
   },
   created() {
@@ -202,21 +195,6 @@ export default {
           this.isLoading = false;
           this.$bus.$emit('updateCart');
           this.getCart();
-        })
-        .catch(() => {
-          this.isLoading = false;
-        });
-    },
-    useCoupon() {
-      this.isLoading = true;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/coupon/search`;
-      this.axios
-        .post(url, {
-          code: this.couponCode,
-        })
-        .then((res) => {
-          this.coupon = res.data.data;
-          this.isLoading = false;
         })
         .catch(() => {
           this.isLoading = false;

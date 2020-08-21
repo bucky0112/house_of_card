@@ -13,62 +13,60 @@
         </div>
       </div>
       <div class="row flex-row-reverse pb-5">
-        <div class="col-md-6">
-          <div class="border p-4 mb-4">
-            <div class="d-flex">
-              <img
-                src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-                alt
-                class="mr-2"
-                style="width: 48px; height: 48px; object-fit: cover"
-              />
-              <div class="w-100">
-                <div class="d-flex justify-content-between">
-                  <p class="mb-0 font-weight-bold">Lorem ipsum</p>
-                  <p class="mb-0">NT$12,000</p>
-                </div>
-                <p class="mb-0 font-weight-bold">x1</p>
-              </div>
-            </div>
-            <div class="d-flex mt-2">
-              <img
-                src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-                alt
-                class="mr-2"
-                style="width: 48px; height: 48px; object-fit: cover"
-              />
-              <div class="w-100">
-                <div class="d-flex justify-content-between">
-                  <p class="mb-0 font-weight-bold">Lorem ipsum</p>
-                  <p class="mb-0">NT$12,000</p>
-                </div>
-                <p class="mb-0 font-weight-bold">x1</p>
-              </div>
-            </div>
-            <table class="table mt-4 border-top border-bottom text-muted">
-              <tbody>
-                <tr>
-                  <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">Subtotal</th>
-                  <td class="text-right border-0 px-0 pt-4">NT$24,000</td>
-                </tr>
-                <tr>
-                  <th scope="row" class="border-0 px-0 pt-0 pb-4 font-weight-normal">Payment</th>
-                  <td class="text-right border-0 px-0 pt-0 pb-4">ApplePay</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="d-flex justify-content-between mt-4">
-              <p class="mb-0 h4 font-weight-bold">Total</p>
-              <p class="mb-0 h4 font-weight-bold">NT$24,000</p>
-            </div>
-          </div>
+        <div class="col-md-5 border p-4 mb-4">
+          <b-table-simple responsive small borderless fixed hover>
+            <b-tbody>
+              <b-tr v-for="(item, i) in cart" :key="i">
+                <b-th>
+                  <img
+                    :src="item.product.imageUrl[0]"
+                    :alt="item.product.title"
+                    style="width: 40px; height: 40px; object-fit: cover;"
+                  />
+                  <p class="mb-0 font-weight-bold ml-3 d-inline-block">{{ item.product.title }}</p>
+                </b-th>
+                <b-td>
+                  <p class="mb-0 ml-auto p-4">x {{ item.quantity }} {{ item.product.unit }}</p>
+                </b-td>
+              </b-tr>
+            </b-tbody>
+          </b-table-simple>
+          <b-table-simple small class="table mt-4 border-top border-bottom">
+            <b-tbody>
+              <b-tr>
+                <b-th class="text-left border-0 px-0 pt-4">總計</b-th>
+                <b-td class="text-right border-0 px-0 pt-4">
+                  {{ updateCartTotal | thousands }}
+                </b-td>
+              </b-tr>
+              <b-tr>
+                <b-th class="text-left border-0 px-0 pt-4">折扣後</b-th>
+                <b-td class="text-right border-0 px-0 pt-0 pt-4">
+                  <p class="mb-0 h4 font-weight-bold" v-if="coupon.enabled">
+                    {{ Math.round(updateCartTotal * ((100 - coupon.percent) / 100)) | thousands }}
+                  </p>
+                  <p class="mb-0 h4 font-weight-bold" v-else>{{ updateCartTotal | thousands }}</p>
+                </b-td>
+              </b-tr>
+            </b-tbody>
+          </b-table-simple>
+          <b-input-group class="mt-3">
+            <b-form-input type="text" placeholder="請輸入優惠碼" v-model="couponCode">
+            </b-form-input>
+            <b-input-group-append>
+              <b-button variant="info" @click="useCoupon">使用優惠碼</b-button>
+            </b-input-group-append>
+          </b-input-group>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
           <validation-observer v-slot="{ invalid }">
             <b-form @submit.prevent="createOrder">
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required">
-                  <label for="username">收件人姓名<b-badge pill variant="danger">必填</b-badge></label>
+                  <label for="username">
+                    收件人姓名
+                    <b-badge pill variant="danger">必填</b-badge>
+                  </label>
                   <input
                     id="username"
                     v-model="form.name"
@@ -83,7 +81,10 @@
               </b-form-group>
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required">
-                  <label for="email">Email<b-badge pill variant="danger">必填</b-badge></label>
+                  <label for="email">
+                    Email
+                    <b-badge pill variant="danger">必填</b-badge>
+                  </label>
                   <input
                     id="email"
                     v-model="form.email"
@@ -98,7 +99,10 @@
               </b-form-group>
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required|min:8">
-                  <label for="tel">電話<b-badge pill variant="danger">必填</b-badge></label>
+                  <label for="tel">
+                    電話
+                    <b-badge pill variant="danger">必填</b-badge>
+                  </label>
                   <input
                     id="tel"
                     v-model="form.tel"
@@ -113,7 +117,10 @@
               </b-form-group>
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required">
-                  <label for="address">地址<b-badge pill variant="danger">必填</b-badge></label>
+                  <label for="address">
+                    地址
+                    <b-badge pill variant="danger">必填</b-badge>
+                  </label>
                   <input
                     id="address"
                     v-model="form.address"
@@ -149,8 +156,10 @@
                   rows="3"
                 ></textarea>
               </b-form-group>
-              <div class="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between
-              align-items-md-center align-items-end">
+              <div
+                class="d-flex flex-column-reverse flex-md-row mt-4
+                justify-content-between align-items-md-center align-items-end"
+              >
                 <router-link class="text-dark mt-md-0 mt-3" to="/cart">
                   <i class="fas fa-chevron-left mr-2"></i> 回購物車
                 </router-link>
@@ -165,15 +174,18 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import ProgressBar from '@/components/front/ProgressBar.vue';
+import Footer from '@/components/front/Footer.vue';
 
 export default {
   components: {
     ProgressBar,
+    Footer,
   },
   data() {
     return {
@@ -186,21 +198,66 @@ export default {
         payment: '',
         message: '',
       },
+      cart: [],
+      coupon: {},
+      couponCode: '',
     };
   },
+  computed: {
+    updateCartTotal() {
+      // 第一次處理帶入初始值 0
+      return this.cart.reduce(
+        (accumulator, i) => accumulator + i.product.price * i.quantity,
+        0,
+      );
+    },
+  },
+  created() {
+    this.getCart();
+  },
   methods: {
+    getCart() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
+      this.axios
+        .get(url)
+        .then((res) => {
+          this.cart = res.data.data;
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+        });
+    },
     createOrder() {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/orders`;
       this.isLoading = true;
       const order = { ...this.form };
-      this.axios.post(url, order)
-        .then(() => {
+      if (this.coupon.enabled) {
+        order.coupon = this.coupon.code;
+      }
+      this.axios
+        .post(url, order)
+        .then((res) => {
           this.$bus.$emit('updateCart');
           this.isLoading = false;
-          this.$router.push('/checkout');
+          this.$router.push(`/checkout/${res.data.data.id}`);
+        })
+        .catch(() => {});
+    },
+    useCoupon() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/coupon/search`;
+      this.axios
+        .post(url, {
+          code: this.couponCode,
+        })
+        .then((res) => {
+          this.coupon = res.data.data;
+          this.isLoading = false;
         })
         .catch(() => {
-
+          this.isLoading = false;
         });
     },
   },
