@@ -33,19 +33,20 @@
           </b-table-simple>
           <b-table-simple small class="table mt-4 border-top border-bottom">
             <b-tbody>
-              <b-tr>
+              <b-tr v-if="!coupon.enabled">
                 <b-th class="text-left border-0 px-0 pt-4">總計</b-th>
                 <b-td class="text-right border-0 px-0 pt-4">
-                  {{ updateCartTotal | thousands }}
+                  <p class="mb-0 h4 font-weight-bold">
+                    {{ updateCartTotal | thousands }}
+                  </p>
                 </b-td>
               </b-tr>
-              <b-tr>
-                <b-th class="text-left border-0 px-0 pt-4">折扣後</b-th>
+              <b-tr v-else>
+                <b-th class="text-left border-0 px-0 pt-4">折扣後總計</b-th>
                 <b-td class="text-right border-0 px-0 pt-0 pt-4">
-                  <p class="mb-0 h4 font-weight-bold" v-if="coupon.enabled">
-                    {{ Math.round(updateCartTotal * ((100 - coupon.percent) / 100)) | thousands }}
+                  <p class="mb-0 h4 font-weight-bold">
+                    {{ updateCartTotal - discountNum | thousands }}
                   </p>
-                  <p class="mb-0 h4 font-weight-bold" v-else>{{ updateCartTotal | thousands }}</p>
                 </b-td>
               </b-tr>
             </b-tbody>
@@ -64,17 +65,17 @@
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required">
                   <label for="username">
-                    收件人姓名
+                    訂購人姓名
                     <b-badge pill variant="danger">必填</b-badge>
                   </label>
                   <input
                     id="username"
                     v-model="form.name"
-                    name="收件人姓名"
+                    name="訂購人姓名"
                     type="text"
                     class="form-control"
                     :class="classes"
-                    placeholder="請輸入收件人姓名"
+                    placeholder="請輸入訂購人姓名"
                   />
                   <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
                 </validation-provider>
@@ -134,7 +135,7 @@
                 </validation-provider>
               </b-form-group>
               <b-form-group>
-                <label for="select">購買方式</label>
+                <label for="select">付款方式</label>
                 <select v-model="form.payment" class="form-control" id="select" required>
                   <option value disabled>請選擇付款方式</option>
                   <option value="WebATM">WebATM</option>
@@ -210,6 +211,9 @@ export default {
         (accumulator, i) => accumulator + i.product.price * i.quantity,
         0,
       );
+    },
+    discountNum() {
+      return Math.round(this.updateCartTotal * ((100 - this.coupon.percent) / 100));
     },
   },
   created() {

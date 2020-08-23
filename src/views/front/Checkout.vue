@@ -35,11 +35,50 @@
               </b-tr>
               <b-tr>
                 <b-td></b-td>
-                <b-th>總金額：</b-th>
-                <b-th>{{ order.amount | thousands }}</b-th>
+                <b-td><strong>折扣：</strong></b-td>
+                <b-td v-if="!order.coupon">
+                  <p>0</p>
+                </b-td>
+                <b-td v-else>
+                  <strong>{{ discountNum | thousands }}</strong>
+                </b-td>
+              </b-tr>
+              <b-tr>
+                <b-td></b-td>
+                <b-td><strong>總計：</strong></b-td>
+                <b-td><strong> {{ order.amount | thousands }}</strong></b-td>
               </b-tr>
             </b-tbody>
           </b-table-simple>
+          <b-table-simple class="mt-5" responsive fixed>
+            <b-tbody>
+              <b-tr>
+                <b-th>訂購人姓名</b-th>
+                <b-td>{{ order.user.name }}</b-td>
+              </b-tr>
+              <b-tr>
+                <b-th>訂購人 Email</b-th>
+                <b-td>{{ order.user.email }}</b-td>
+              </b-tr>
+              <b-tr>
+                <b-th>訂購人電話</b-th>
+                <b-td>{{ order.user.tel }}</b-td>
+              </b-tr>
+              <b-tr>
+                <b-th>訂購人地址</b-th>
+                <b-td>{{ order.user.address }}</b-td>
+              </b-tr>
+              <b-tr>
+                <b-th>訂購人付款方式</b-th>
+                <b-td>{{ order.payment }}</b-td>
+              </b-tr>
+              <b-tr v-if="order.message">
+                <b-th>建議與意見</b-th>
+                <b-td>{{ order.message }}</b-td>
+              </b-tr>
+            </b-tbody>
+          </b-table-simple>
+          <b-button variant="dark" @click="payingOrder">確認付款</b-button>
         </div>
       </div>
     </div>
@@ -59,13 +98,32 @@ export default {
   data() {
     return {
       isLoading: false,
-      order: {},
+      order: {
+        coupon: null,
+        amount: 0,
+        user: {
+          address: '',
+          email: '',
+          name: '',
+          tel: '',
+        },
+      },
       orderId: '',
     };
   },
   created() {
     this.orderId = this.$route.params.id;
     this.getOrder();
+  },
+  computed: {
+    originTotalPrice() {
+      return this.order.products.reduce(
+        (accumulator, i) => accumulator + i.product.price * i.quantity, 0,
+      );
+    },
+    discountNum() {
+      return Math.round(this.originTotalPrice * ((100 - this.order.coupon.percent) / 100));
+    },
   },
   methods: {
     getOrder() {
@@ -80,6 +138,17 @@ export default {
         .catch(() => {
           this.isLoading = false;
         });
+    },
+    payingOrder() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}/paying`;
+      this.axios
+        .post(url)
+        .then(() => {
+          this.isLoading = false;
+          this.$router.push('/success');
+        })
+        .catch();
     },
   },
 };
