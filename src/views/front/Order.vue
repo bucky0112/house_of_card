@@ -231,6 +231,7 @@ export default {
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
         });
     },
     createOrder() {
@@ -245,6 +246,7 @@ export default {
         .then((res) => {
           this.$bus.$emit('updateCart');
           this.isLoading = false;
+          this.$toast.success('成功幫您建立訂單囉～');
           this.$router.push(`/checkout/${res.data.data.id}`);
         })
         .catch(() => {});
@@ -259,9 +261,11 @@ export default {
         .then((res) => {
           this.coupon = res.data.data;
           this.isLoading = false;
+          this.$toast.success('成功幫您使用折扣囉～');
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('請輸入正確的優惠碼。');
         });
     },
   },

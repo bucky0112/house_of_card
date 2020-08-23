@@ -137,6 +137,7 @@ export default {
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
         });
     },
     payingOrder() {
@@ -146,9 +147,13 @@ export default {
         .post(url)
         .then(() => {
           this.isLoading = false;
+          this.$toast.success('謝謝您的購買，會儘快幫您寄出商品～');
           this.$router.push('/success');
         })
-        .catch();
+        .catch(() => {
+          this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
+        });
     },
   },
 };

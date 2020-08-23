@@ -8,6 +8,8 @@ import {
   ValidationObserver,
   ValidationProvider, configure, localize, extend,
 } from 'vee-validate';
+import Toast from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
 import * as rules from 'vee-validate/dist/rules';
 import zhTW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
@@ -16,8 +18,24 @@ import './assets/all.scss';
 import thousandsFilter from './filters/thousands';
 
 Vue.config.productionTip = false;
+// Toast 設定
+const options = {
+  position: 'top-right',
+  timeout: 5000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: true,
+  closeButton: 'button',
+  icon: 'fas fa-rocket',
+  rtl: false,
+};
 
 Vue.use(VueAxios, axios);
+Vue.use(Toast, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.component('Loading', Loading);

@@ -84,6 +84,7 @@ export default {
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
         });
     },
     addToCart(id, quantity = 1) {
@@ -98,9 +99,11 @@ export default {
         .then(() => {
           this.$bus.$emit('updateCart');
           this.isLoading = false;
+          this.$toast.success('已加入購物車～');
         })
-        .catch(() => {
+        .catch((err) => {
           this.isLoading = false;
+          this.$toast.error(`${err.response.data.errors}`);
         });
     },
   },

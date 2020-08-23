@@ -26,7 +26,7 @@
                   <b-th class="border-0 pl-0">產品名稱</b-th>
                   <b-th class="border-0">購買數量</b-th>
                   <b-th class="border-0">產品價格</b-th>
-                  <b-th class="border-0"></b-th>
+                  <b-th class="border-0">刪除商品</b-th>
                 </b-tr>
               </b-thead>
               <b-tbody>
@@ -151,6 +151,7 @@ export default {
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
         });
     },
     removeAllCartItem() {
@@ -165,6 +166,7 @@ export default {
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
         });
     },
     removeCartItem(id) {
@@ -176,9 +178,11 @@ export default {
           this.isLoading = false;
           this.$bus.$emit('updateCart');
           this.getCart();
+          this.$toast.success('已刪除商品～');
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
         });
     },
     updateQuantity(id, num) {
@@ -195,9 +199,11 @@ export default {
           this.isLoading = false;
           this.$bus.$emit('updateCart');
           this.getCart();
+          this.$toast.success('已更新商品數量～');
         })
         .catch(() => {
           this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
         });
     },
   },
