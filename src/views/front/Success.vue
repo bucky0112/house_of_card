@@ -2,15 +2,14 @@
   <div>
     <div class="position-relative d-flex">
       <div class="container d-flex flex-column" style="min-height: 100vh;">
-        <nav class="navbar navbar-expand-lg navbar-light px-0">
-          <a class="navbar-brand" href="./index.html">Navbar</a>
-        </nav>
         <div class="row my-auto pb-7">
           <div class="col-md-4 d-flex flex-column">
             <div class="my-auto">
-              <h2>Checkout Success</h2>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
-              <a href="./index.html" class="btn btn-dark mt-4 px-5">Back To Home</a>
+              <h2>感謝您的支持，</h2>
+              <h2>您的商品會儘快送達。</h2>
+              <router-link to="/">
+                <a href="#" class="btn btn-dark mt-4 px-5">回首頁</a>
+              </router-link>
             </div>
           </div>
         </div>

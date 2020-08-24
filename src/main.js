@@ -10,6 +10,8 @@ import {
 } from 'vee-validate';
 import Toast from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
+import StepProgress from 'vue-step-progress';
+import 'vue-step-progress/dist/main.css';
 import * as rules from 'vee-validate/dist/rules';
 import zhTW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
@@ -39,6 +41,7 @@ Vue.use(Toast, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.component('Loading', Loading);
+Vue.component('step-progress', StepProgress);
 Vue.filter('thousands', thousandsFilter);
 Vue.prototype.$bus = new Vue();
 Vue.component('ValidationObserver', ValidationObserver);

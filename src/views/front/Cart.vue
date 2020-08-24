@@ -15,7 +15,8 @@
       <div class="mt-3" v-else>
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <ProgressBar></ProgressBar>
+            <step-progress :steps="mySteps" :current-step="currentStep"
+          icon-class="fa fa-check" active-color="#53B883"/>
           </div>
         </div>
         <div class="row mt-5">
@@ -115,19 +116,19 @@
 </template>
 
 <script>
-import ProgressBar from '@/components/front/ProgressBar.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
   components: {
-    ProgressBar,
     Footer,
   },
   data() {
     return {
-      cart: [],
+      mySteps: ['購物車', '填寫資料', '確認訂單'],
+      currentStep: 0,
       isLoading: false,
       cartTotal: 0,
+      cart: [],
     };
   },
   created() {
