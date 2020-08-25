@@ -2,6 +2,8 @@ import Vue from 'vue';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import 'swiper/css/swiper.css';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import {
@@ -37,6 +39,7 @@ const options = {
 };
 
 Vue.use(VueAxios, axios);
+Vue.use(VueAwesomeSwiper /* ,{ default options with global component } */);
 Vue.use(Toast, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);

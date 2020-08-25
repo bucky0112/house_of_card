@@ -1,7 +1,6 @@
 <template>
   <div class="products">
     <loading :active.sync="isLoading"></loading>
-    <Banner></Banner>
     <b-container class="mt-md-5 mt-3 mb-7">
       <b-card-group
         class="card-group"
@@ -45,14 +44,12 @@
 </template>
 
 <script>
-import Banner from '@/components/front/Banner.vue';
 import Pagination from '@/components/Pagination.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
   name: 'Products',
   components: {
-    Banner,
     Pagination,
     Footer,
   },
