@@ -1,42 +1,46 @@
 <template>
   <div class="products">
     <loading :active.sync="isLoading"></loading>
-    <b-container class="mt-md-5 mt-3 mb-7">
-      <b-card-group
-        class="card-group"
-        v-for="row in formattedProducts"
-        :key="row.id"
-        deck
-      >
-        <b-card
-          border-variant="light"
-          :key="filterCategory.id"
-          v-for="filterCategory in row"
-          :header="filterCategory.title"
-          img-top
-          class="card mb-4"
-        >
-          <router-link :to="`/product/${filterCategory.id}`">
-            <b-card-img :src="filterCategory.imageUrl[0]"></b-card-img>
-          </router-link>
-          <b-badge variant="dark" class="float-right ml-2">{{ filterCategory.category }}</b-badge>
-          <b-card-text>
-            <div v-if="!filterCategory.price" class="h5">
-              {{ filterCategory.origin_price | thousands }}
-            </div>
-            <!-- 反之，就顯示 origin_price 與 price -->
-            <div v-else>
-              <del class="h6">{{ filterCategory.origin_price | thousands }}</del>
-              <div class="h5 text-primary">{{ filterCategory.price | thousands }}</div>
-            </div>
-          </b-card-text>
-          <template v-slot:footer>
-            <b-button pill
-              variant="outline-primary"
-              @click="addToCart(filterCategory.id)">加到購物車</b-button>
-          </template>
-        </b-card>
-      </b-card-group>
+    <b-container>
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-3" v-for="(item, i) in filterCategory" :key="i">
+          <b-card class="mt-md-5 mt-3 mb-8">
+            <template v-slot:header>
+              <h4 class="mb-0">{{ item.title }}</h4>
+            </template>
+            <router-link :to="`/product/${item.id}`">
+              <b-card-text>
+                <div
+                  style="
+                  height: 200px;
+                  background-size: cover;
+                  background-position: center;"
+                  class="mb-4"
+                  :style="{ backgroundImage: `url(${ item.imageUrl[0] })` }"
+                ></div>
+                <b-badge variant="secondary" class="float-right">{{ item.category }}</b-badge>
+                <div class="d-flex justify-content-between mb-0">
+                  <div class="price text-success" v-if="!item.price">
+                    <h5 class="mt-4">{{ item.origin_price | thousands }}</h5>
+                  </div>
+                  <div v-else>
+                    <del class="h6">{{ item.origin_price | thousands }}</del>
+                    <div class="h5 text-primary">{{ item.price | thousands }}</div>
+                  </div>
+                </div>
+              </b-card-text>
+            </router-link>
+            <template v-slot:footer class="bg-white p-0 border-0">
+              <b-button variant="outline-primary"
+                class="btn-block"
+                @click="addToCart(item.id)">
+                <i class="fas fa-shopping-cart"></i>
+                加到購物車
+              </b-button>
+            </template>
+          </b-card>
+        </div>
+      </div>
     </b-container>
     <Pagination :pages="pagination" @emitPages="getProducts"></Pagination>
     <Footer></Footer>
@@ -111,22 +115,13 @@ export default {
       }
       return this.products.filter((item) => item.category === this.category);
     },
-    formattedProducts() {
-      return this.filterCategory.reduce((c, n, i) => {
-        if (i % 4 === 0) c.push([]);
-        c[c.length - 1].push(n);
-        return c;
-      }, []);
-    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.card-group .card {
-  max-width: 25%;
+a {
+  color:inherit;
+  text-decoration: none;
 }
-// .card-deck .card {
-//   max-width: calc(25% -30px);
-// }
 </style>
