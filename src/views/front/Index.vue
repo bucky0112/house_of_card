@@ -1,10 +1,12 @@
 <template>
   <div class="index">
+    <loading :active.sync="isLoading"/>
     <div class="container">
       <Banner></Banner>
     </div>
     <div class="container">
-      <div class="row mt-5">
+      <h2 class="mt-5">本週家庭遊戲主打</h2>
+      <div class="row mt-2">
         <div class="col-md-4 mt-md-4">
           <div class="card border-0 mb-4">
             <img
@@ -182,6 +184,40 @@ export default {
   components: {
     Banner,
     Footer,
+  },
+  data() {
+    return {
+      products: [],
+      isLoading: false,
+      category: 'all',
+    };
+  },
+  created() {
+    this.getProducts();
+  },
+  computed: {
+    filterCategory() {
+      if (this.category === 'all') {
+        return this.products;
+      }
+      return this.products.filter((item) => item.category === this.category);
+    },
+  },
+  methods: {
+    getProducts() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/products`;
+      this.axios
+        .get(url)
+        .then((res) => {
+          this.products = res.data.data;
+          this.isLoading = false;
+        })
+        .catch(() => {
+          this.isLoading = false;
+          this.$toast.error('出了點問題，請再試一次。');
+        });
+    },
   },
 };
 </script>

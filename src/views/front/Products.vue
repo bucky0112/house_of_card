@@ -1,6 +1,6 @@
 <template>
   <div class="products">
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading"/>
     <b-container>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-3" v-for="(item, i) in filterCategory" :key="i">
