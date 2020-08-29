@@ -1,19 +1,19 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="light" variant="light">
+    <b-navbar toggleable="lg" type="light" variant="light" fixed="top">
       <b-navbar-brand href="#" to="/" class="brand-link">
         House of Card
       </b-navbar-brand>
       <!-- 響應式用於管理<b-collapse is-nav>組件 -->
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="button-group ml-auto">
           <!-- <b-nav-item>有包含 router-link 組件，提供一個 to 屬性值生成一個 <router-link> -->
-          <b-nav-item href="#" to="/">Home</b-nav-item>
-          <b-nav-item href="#" to="/Products">Products</b-nav-item>
-          <b-nav-item href="#" to="/About">About</b-nav-item>
+          <b-nav-item to="/products"><i class="fas fa-dice"></i>商品一覽</b-nav-item>
+          <b-nav-item to="/gameinfo"><i class="fas fa-dice-two"></i>認識桌遊</b-nav-item>
+          <b-nav-item to="/about"><i class="fas fa-smile-wink"></i>關於我們</b-nav-item>
           <b-nav-item href="#" to="/Cart">
-            <b-icon icon="cart3"></b-icon>
+            <i class="fas fa-shopping-cart"></i>
             <b-badge pill variant="danger" v-if="cart.length">{{ cart.length }}</b-badge>
           </b-nav-item>
         </b-navbar-nav>
@@ -26,7 +26,10 @@
 
 <style scoped lang="scss">
 .brand-link {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Honey Bear', cursive;
+}
+.button-group {
+  font-size: 18px;
 }
 </style>
 

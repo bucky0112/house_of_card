@@ -1,10 +1,39 @@
 <template>
   <div class="products">
     <loading :active.sync="isLoading"/>
-    <b-container>
+    <b-container style="margin-top: 100px;">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white px-0">
+          <li class="breadcrumb-item">
+            <router-link to="/" class="text-muted">首頁</router-link>
+          </li>
+          <li class="breadcrumb-item">
+            全部商品
+          </li>
+        </ol>
+      </nav>
+      <div>
+        <b-button-group>
+          <b-button
+            variant="dark"
+            @click.prevent="chooseCategory = ''"
+            :class="{ active: chooseCategory === '' }"
+          >
+            全部遊戲
+          </b-button>
+          <b-button
+            variant="dark"
+            v-for="(item, i) in categories" :key="i"
+            @click.prevent="chooseCategory = item"
+            :class="{ active: item === chooseCategory }"
+          >
+            {{ item }}
+          </b-button>
+        </b-button-group>
+      </div>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-3" v-for="(item, i) in filterCategory" :key="i">
-          <b-card class="mt-md-5 mt-3 mb-8">
+          <b-card class="mt-md-5 mt-3 mb-8" border-variant="light">
             <template v-slot:header>
               <h4 class="mb-0">{{ item.title }}</h4>
             </template>
@@ -20,8 +49,8 @@
                 ></div>
                 <b-badge variant="secondary" class="float-right">{{ item.category }}</b-badge>
                 <div class="d-flex justify-content-between mb-0">
-                  <div class="price text-success" v-if="!item.price">
-                    <h5 class="mt-4">{{ item.origin_price | thousands }}</h5>
+                  <div class="price text-success" v-if="!item.origin_price">
+                    <h5 class="mt-4">{{ item.price | thousands }}</h5>
                   </div>
                   <div v-else>
                     <del class="h6">{{ item.origin_price | thousands }}</del>
@@ -42,7 +71,7 @@
         </div>
       </div>
     </b-container>
-    <Pagination :pages="pagination" @emitPages="getProducts"></Pagination>
+    <Pagination :pages="pagination" @emitPages="getProducts" class="mt-5"/>
     <Footer></Footer>
   </div>
 </template>
@@ -61,7 +90,8 @@ export default {
     return {
       products: [],
       isLoading: false,
-      category: 'all',
+      categories: ['家庭遊戲', '派對遊戲', '策略遊戲', '主題遊戲'],
+      chooseCategory: '',
       pagination: {},
       tempProduct: {},
       status: {
@@ -81,6 +111,10 @@ export default {
         .then((res) => {
           this.products = res.data.data;
           this.pagination = res.data.meta.pagination;
+          const { categoryName } = this.$route.params;
+          if (categoryName) {
+            this.chooseCategory = categoryName;
+          }
           this.isLoading = false;
         })
         .catch(() => {
@@ -110,10 +144,15 @@ export default {
   },
   computed: {
     filterCategory() {
-      if (this.category === 'all') {
-        return this.products;
+      if (this.chooseCategory) {
+        return this.products.filter((item) => {
+          const data = item.category
+            .toLowerCase()
+            .includes(this.chooseCategory.toLowerCase());
+          return data;
+        });
       }
-      return this.products.filter((item) => item.category === this.category);
+      return this.products;
     },
   },
 };

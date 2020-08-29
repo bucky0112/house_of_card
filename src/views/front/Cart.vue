@@ -2,9 +2,9 @@
   <div class="cart">
     <loading :active.sync="isLoading" />
     <div class="container">
-      <div v-if="!cart[0]" class="d-flex justify-content-center">
-        <div>
-          <h2>您的購物車沒有商品唷，請回商品頁面選購吧～</h2>
+      <div class="d-flex justify-content-center" v-if="!cart[0]">
+        <div style="margin-top: 100px; margin-bottom: 200px">
+          <h2 class="mb-5">您的購物車沒有商品唷，請回商品頁面選購吧～</h2>
           <router-link to="/products"
             class="text-dark mt-5 mt-3 h5">
             <i class="fas fa-chevron-left mr-2"></i>
@@ -70,7 +70,9 @@
                     </b-input-group>
                   </b-td>
                   <td class="border-0 align-middle">
-                    <p class="mb-0 ml-auto">{{ item.product.price | thousands }}</p>
+                    <p class="mb-0 ml-auto">
+                      {{ item.product.price | thousands }}
+                    </p>
                   </td>
                   <td class="border-0 align-middle">
                     <b-button variant="outline-dark"
@@ -91,8 +93,11 @@
                     <b-th class="border-0 px-0 pt-4 font-weight-normal">
                       {{ item.quantity }} {{ item.product.unit }}
                     </b-th>
-                    <b-td class="text-right border-0 px-0 pt-4">
+                    <b-td class="text-right border-0 px-0 pt-4" v-if="item.product.price">
                       {{ item.product.price * item.quantity | thousands }}
+                    </b-td>
+                    <b-td class="text-right border-0 px-0 pt-4" v-else>
+                      {{ item.product.origin_price * item.quantity | thousands }}
                     </b-td>
                   </b-tr>
                 </b-tbody>

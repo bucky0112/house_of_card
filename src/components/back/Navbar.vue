@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar type="dark" variant="dark" toggleable="lg">
-      <b-navbar-brand href="#" style="font-family: 'Permanent Marker', cursive;">
+      <b-navbar-brand href="#" class="brand-link">
         House of Card
       </b-navbar-brand>
       <!-- 響應式用於管理<b-collapse is-nav>組件 -->
@@ -42,3 +42,9 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.brand-link {
+  font-family: 'Honey Bear', cursive;
+}
+</style>

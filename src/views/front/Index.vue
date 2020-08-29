@@ -1,173 +1,74 @@
 <template>
   <div class="index">
     <loading :active.sync="isLoading"/>
-    <div class="container">
-      <Banner></Banner>
-    </div>
-    <div class="container">
-      <h2 class="mt-5">本週家庭遊戲主打</h2>
-      <div class="row mt-2">
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div class="d-flex justify-content-between">
-                <p class="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div class="d-flex justify-content-between">
-                <p class="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div class="d-flex justify-content-between">
-                <p class="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bg-light mt-7">
-      <div class="container">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p
-                    class="my-5"
-                  >“Lorem ipsum dolor sit amet,
-                  consetetur sadipscing elitr,
-                  sed diam nonumy eirmod tempor invidunt ut
-                  labore et dolore magna aliquyam erat.”</p>
-                  <p>
-                    <small>—Lorem ipsum dolor sit amet.—</small>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p
-                    class="my-5"
-                  >“Lorem ipsum dolor sit amet, consetetur
-                  sadipscing elitr, sed diam nonumy eirmod
-                  tempor invidunt ut labore et dolore magna aliquyam erat.”</p>
-                  <p>
-                    <small>—Lorem ipsum dolor sit amet.—</small>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p
-                    class="my-5"
-                  >“Lorem ipsum dolor sit amet, consetetur
-                  sadipscing elitr, sed diam nonumy eirmod
-                  tempor invidunt ut labore et dolore magna aliquyam erat.”</p>
-                  <p>
-                    <small>—Lorem ipsum dolor sit amet.—</small>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a
-            class="carousel-control-prev"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a
-            class="carousel-control-next"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="container my-7">
+    <Banner></Banner>
+    <b-container>
+      <h2 class="mt-5">本月家庭遊戲主打</h2>
+      <Carousel></Carousel>
+    </b-container>
+    <div class="container my-7 mt-5">
       <div class="row">
         <div class="col-md-6">
-          <img
-            src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-            alt
-            class="img-fluid"
+          <b-img-lazy
+            src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/nORfs93tQEExTOkobavBXIaw6ynIfpgV8e2WlXG7eD3ycs02GLDY2SHOdJ3pRLoodp8NZ94ktDKX6NxJz3VOppp3yysKuPYujY3pNqm4VIxmwUfBLxMRg5GDVFMiYJmG.jpg"
+            rounded
+            fluid
           />
         </div>
-        <div class="col-md-4 m-auto text-center">
-          <h4 class="mt-4">Lorem ipsum</h4>
-          <p
-            class="text-muted"
-          >Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod
-          tempor invidunt ut labore et dolore magna.</p>
+        <div class="col-md-4 m-auto">
+          <!-- <b-img :src="require('@/assets/hc_logo.png')" fluid></b-img> -->
+          <h4 class="mt-2">什麼是桌遊？</h4>
+          <p class="about-tg text-muted">桌上遊戲 (Tabletop game)，簡稱為桌遊，在臺灣大街小巷最常見的就是大富翁了，
+          不過近年來最熱門的大概是派對遊戲，這之中的佼佼者又屬阿瓦隆、狼人殺之類的陣營遊戲最為知名，有興趣的想了解桌遊詳情請往
+          <i class="fas fa-arrow-right"></i>
+          <router-link to="/gameinfo"> 認識桌遊</router-link>
+          </p>
         </div>
       </div>
       <div class="row flex-row-reverse justify-content-between mt-4">
         <div class="col-md-6">
-          <img
-            src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-            alt
-            class="img-fluid"
+          <b-img-lazy
+            src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Gm9NzzvW1rLRczWlByQtu4EDc7cGcqRPLDk8FRWPnn7cvpt4x1v6AhsrRoy0hO5gIgD7bmr0dfJwutcEIfevtZdKYfXqNC5ktJkGkgGWHhDL6B28llDrafmCJPmnWb7B.jpg"
+            rounded
+            fluid
           />
         </div>
         <div class="col-md-4 m-auto text-center">
-          <h4 class="mt-4">Lorem ipsum</h4>
-          <p
-            class="text-muted"
-          >Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod
-          tempor invidunt ut labore et dolore magna.</p>
+          <h4 class="mt-4">推薦桌遊</h4>
+          <p class="text-muted">
+            稍微了解桌遊之後，或是你還不了解桌遊是幹什麼的（那是什麼？可以吃嗎？）<br/>
+            沒關係，直接來玩這些熱門款推薦的桌遊：<br/>
+            <ol>
+              <li>駱駝大賽</li>
+              <li>七大奇蹟</li>
+              <li>阿瓦隆</li>
+              <li style="list-style-type: none;">
+                <router-link to="/recommend">
+                  點我看更多
+                </router-link>
+              </li>
+            </ol>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <b-img-lazy
+            src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/kQTEkwjr8Sqys68hB1tXujFGdKdqLlJ7JrAhQE8hPWktoIEJg07k76Kwq8pXoXej110v650QwRglVsEnCMIed9lmPUba4g1OBOHqnD73iIdQWR51d4Lem7ya26fM4AjM.jpg"
+            rounded
+            fluid
+          />
+        </div>
+        <div class="col-md-4 m-auto">
+          <h4 class="mt-2">House of Card 提供的服務</h4>
+          <p class="about-tg text-muted">
+            House of Card 專門提供給玩家最有趣的桌遊，不管是國內外熱門類型，絕對會第一時間提供給需要的玩家。
+            如果玩家有特殊需求，想要訂購目前臺灣找不到的桌遊，也可以聯絡我們，
+            House of Card 會盡可能地滿足所有大朋友、小朋友。<br/>
+            今晚，我想來去 ...
+          <i class="fas fa-arrow-right"></i>
+          <router-link to="/products"> 逛商店</router-link>
+          </p>
         </div>
       </div>
     </div>
@@ -177,47 +78,27 @@
 
 <script>
 import Banner from '@/components/front/Banner.vue';
+import Carousel from '@/components/front/Carousel.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
   name: 'Index',
   components: {
     Banner,
+    Carousel,
     Footer,
   },
   data() {
     return {
-      products: [],
       isLoading: false,
-      category: 'all',
     };
-  },
-  created() {
-    this.getProducts();
-  },
-  computed: {
-    filterCategory() {
-      if (this.category === 'all') {
-        return this.products;
-      }
-      return this.products.filter((item) => item.category === this.category);
-    },
-  },
-  methods: {
-    getProducts() {
-      this.isLoading = true;
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/products`;
-      this.axios
-        .get(url)
-        .then((res) => {
-          this.products = res.data.data;
-          this.isLoading = false;
-        })
-        .catch(() => {
-          this.isLoading = false;
-          this.$toast.error('出了點問題，請再試一次。');
-        });
-    },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+p {
+  line-height: 35px;
+  text-align: left;
+}
+</style>

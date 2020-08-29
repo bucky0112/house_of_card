@@ -49,6 +49,16 @@ const routes = [
         name: 'Success',
         component: () => import('../views/front/Success.vue'),
       },
+      {
+        path: 'gameinfo',
+        name: 'GameInfo',
+        component: () => import('../views/front/GameInfo.vue'),
+      },
+      {
+        path: 'recommend',
+        name: 'Recommend',
+        component: () => import('../views/front/Recommend.vue'),
+      },
     ],
   },
   {

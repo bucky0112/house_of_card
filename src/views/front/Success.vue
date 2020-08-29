@@ -16,7 +16,7 @@
       </div>
       <div
         class="w-md-50 w-100 position-absolute opacity-1"
-        style="z-index: -1; min-height: 100vh; right: 0; background-image: url(https://images.unsplash.com/photo-1480399129128-2066acb5009e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+        style="z-index: -1; min-height: 100vh; right: 0; background-image: url(https://images.unsplash.com/photo-1586810165616-94c631fc2f79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
       background-position: center center;"
       ></div>
     </div>

@@ -1,28 +1,33 @@
 <template>
   <div class="product">
-    <loading :active.sync="isLoading"></loading>
-    <div class="container">
+    <loading :active.sync="isLoading"/>
+    <div class="container" style="margin-top: 100px">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white px-0">
           <li class="breadcrumb-item">
-            <a class="text-muted" href="./index.html">Home</a>
+            <router-link to="/" class="text-muted">首頁</router-link>
           </li>
           <li class="breadcrumb-item">
-            <a class="text-muted" href="./product.html">Product</a>
+            <router-link to="/products" class="text-muted">全部商品</router-link>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">Detail</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
         </ol>
       </nav>
       <div class="row align-items-center">
         <div class="col-md-7">
-          <b-img :src="product.imageUrl[0]" :alt="product.title"></b-img>
+          <b-img height="400" :src="product.imageUrl[0]" :alt="product.title"></b-img>
         </div>
         <div class="col-md-5">
-          <h2 class="font-weight-bold h1 mb-1">{{ product.title }}</h2>
-          <p class="mb-0 text-muted text-right">
+          <h2 class="font-weight-bold h1 mb-5">{{ product.title }}</h2>
+          <div v-if="product.origin_price">
+            <p class="mb-0 text-muted text-right">
             <del>{{ product.origin_price | thousands }}</del>
-          </p>
-          <p class="h4 font-weight-bold text-right">{{ product.price | thousands }}</p>
+            </p>
+            <p class="h4 font-weight-bold text-right">售價： {{ product.price | thousands }}</p>
+          </div>
+          <div v-else>
+            <p class="h4 font-weight-bold text-right">售價： {{ product.price | thousands }}</p>
+          </div>
           <div class="d-flex align-items-center">
             <b-input-group class="my-3 mr-2 bg-light rounded">
               <template v-slot:prepend>
@@ -53,136 +58,13 @@
           </div>
         </div>
       </div>
-      <div class="row my-5">
-        <div class="col-md-4">
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing
-            elitr, sed diam nonumy eirmod tempor invidunt ut
-            labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-          </p>
-        </div>
-        <div class="col-md-3">
+      <b-row>
+        <b-col class="mt-3">
           <p class="text-muted">
-            Lorem ipsum dolor sit amet, consetetur sadipscing
-            elitr, sed diam nonumy eirmod tempor
-          </p>
-        </div>
-      </div>
-      <h3 class="font-weight-bold">Lorem ipsum dolor sit amet</h3>
-      <div class="swiper-container mt-4 mb-5">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                class="card-img-top rounded-0"
-                alt="..."
-              />
-              <a href="#" class="text-dark"></a>
-              <div class="card-body p-0">
-                <h4 class="mb-0 mt-3">
-                  <a href="#">Lorem ipsum</a>
-                </h4>
-                <p class="card-text mb-0">
-                  NT$1,080
-                  <span class="text-muted">
-                    <del>NT$1,200</del>
-                  </span>
-                </p>
-                <p class="text-muted mt-3"></p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                class="card-img-top rounded-0"
-                alt="..."
-              />
-              <a href="#" class="text-dark"></a>
-              <div class="card-body p-0">
-                <h4 class="mb-0 mt-3">
-                  <a href="#">Lorem ipsum</a>
-                </h4>
-                <p class="card-text mb-0">
-                  NT$1,080
-                  <span class="text-muted">
-                    <del>NT$1,200</del>
-                  </span>
-                </p>
-                <p class="text-muted mt-3"></p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                class="card-img-top rounded-0"
-                alt="..."
-              />
-              <a href="#" class="text-dark"></a>
-              <div class="card-body p-0">
-                <h4 class="mb-0 mt-3">
-                  <a href="#">Lorem ipsum</a>
-                </h4>
-                <p class="card-text mb-0">
-                  NT$1,080
-                  <span class="text-muted">
-                    <del>NT$1,200</del>
-                  </span>
-                </p>
-                <p class="text-muted mt-3"></p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                class="card-img-top rounded-0"
-                alt="..."
-              />
-              <a href="#" class="text-dark"></a>
-              <div class="card-body p-0">
-                <h4 class="mb-0 mt-3">
-                  <a href="#">Lorem ipsum</a>
-                </h4>
-                <p class="card-text mb-0">
-                  NT$1,080
-                  <span class="text-muted">
-                    <del>NT$1,200</del>
-                  </span>
-                </p>
-                <p class="text-muted mt-3"></p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="card border-0 mb-4 position-relative position-relative">
-              <img
-                src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                class="card-img-top rounded-0"
-                alt="..."
-              />
-              <a href="#" class="text-dark"></a>
-              <div class="card-body p-0">
-                <h4 class="mb-0 mt-3">
-                  <a href="#">Lorem ipsum</a>
-                </h4>
-                <p class="card-text mb-0">
-                  NT$1,080
-                  <span class="text-muted">
-                    <del>NT$1,200</del>
-                  </span>
-                </p>
-                <p class="text-muted mt-3"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            {{ product.description }}
+          </p></b-col>
+        <b-col class="text-left" style="line-height: 2em;"><p>{{ product.content }}</p></b-col>
+      </b-row>
     </div>
     <Footer></Footer>
   </div>
