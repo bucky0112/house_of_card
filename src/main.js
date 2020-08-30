@@ -19,6 +19,7 @@ import zhTW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
 import router from './router';
 import './assets/all.scss';
+import './assets/main.scss';
 import thousandsFilter from './filters/thousands';
 
 Vue.config.productionTip = false;

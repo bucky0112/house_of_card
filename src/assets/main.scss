@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/functions'; // 官方的
-@import 'helpers/_variables.scss'; // 自己的
-@import '~bootstrap/scss/mixins'; // 官方的
-@import '~bootstrap';
+$primary:       #F3B111;
+$dark:          #423F3D;
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
