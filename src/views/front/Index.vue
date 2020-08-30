@@ -16,7 +16,6 @@
           />
         </div>
         <div class="col-md-4 m-auto">
-          <!-- <b-img :src="require('@/assets/hc_logo.png')" fluid></b-img> -->
           <h4 class="mt-2">什麼是桌遊？</h4>
           <p class="about-tg text-muted">桌上遊戲 (Tabletop game)，簡稱為桌遊，在臺灣大街小巷最常見的就是大富翁了，
           不過近年來最熱門的大概是派對遊戲，這之中的佼佼者又屬阿瓦隆、狼人殺之類的陣營遊戲最為知名，有興趣的想了解桌遊詳情請往
@@ -43,7 +42,7 @@
               <li>七大奇蹟</li>
               <li>阿瓦隆</li>
               <li style="list-style-type: none;">
-                <router-link to="/recommend">
+                <router-link to="/products">
                   點我看更多
                 </router-link>
               </li>

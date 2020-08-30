@@ -54,11 +54,6 @@ const routes = [
         name: 'GameInfo',
         component: () => import('../views/front/GameInfo.vue'),
       },
-      {
-        path: 'recommend',
-        name: 'Recommend',
-        component: () => import('../views/front/Recommend.vue'),
-      },
     ],
   },
   {
