@@ -14,7 +14,6 @@
     </b-container>
     <b-container>
       <div class="about_game"><h2>什麼是桌遊？</h2></div>
-      <!-- <b-img src="https://images.unsplash.com/photo-1547444795-ad4270fa2885?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1604&q=80" fluid></b-img> -->
       <p class="mt-3 text-center">桌遊種類成千上萬，但我們可以依照全球知名網站
         <a href="#" @click="linkToBGG">
           <strong>BoardGameGeek</strong>
@@ -82,7 +81,7 @@
         <div class="col-md-4 m-auto">
           <h4 class="mt-2">策略遊戲(Strategy Games)</h4>
           <p class="about-tg text-muted">
-            這是一個開始邁入重度玩家的區間，很多玩家在體驗過輕鬆有趣的桌遊後，就開始想要挑戰需要燒腦的遊戲，那麼策略遊戲就是你該進入的坑（咦？）<br/>
+            這是一個開始邁入重度玩家的領域，很多玩家在體驗過輕鬆有趣的桌遊後，就開始想要挑戰需要燒腦的遊戲，那麼策略遊戲就是你該進入的坑（咦？）<br/>
             策略遊戲多了許多機制，例如可以有區塊佔領、卡片輪抽，或是手牌管理...等等。這也讓遊戲多了許多耐玩性，不過要注意別想太久就是了。
           </p>
         </div>
@@ -157,7 +156,7 @@
         去找些來玩吧～
       </router-link>
     </b-container>
-    <Footer></Footer>
+    <Footer class="mt-3"></Footer>
   </div>
 </template>
 

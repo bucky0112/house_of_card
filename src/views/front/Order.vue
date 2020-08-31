@@ -1,7 +1,7 @@
 <template>
   <div class="order pt-4">
     <loading :active.sync="isLoading" />
-    <div class="container">
+    <div class="container" style="margin-top: 100px;">
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <step-progress :steps="mySteps" :current-step="currentStep"
@@ -136,7 +136,7 @@
                 </validation-provider>
               </b-form-group>
               <b-form-group>
-                <label for="select">付款方式</label>
+                <label for="select">付款方式<b-badge pill variant="danger">必選</b-badge></label>
                 <select v-model="form.payment" class="form-control" id="select" required>
                   <option value disabled>請選擇付款方式</option>
                   <option value="WebATM">WebATM</option>
@@ -156,6 +156,7 @@
                   class="form-control"
                   cols="30"
                   rows="3"
+                  placeholder="有什麼需求嗎？歡迎留言告訴我們唷～"
                 ></textarea>
               </b-form-group>
               <div

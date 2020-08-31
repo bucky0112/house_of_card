@@ -62,7 +62,11 @@
             <template v-slot:footer class="bg-white p-0 border-0">
               <b-button variant="outline-primary"
                 class="btn-block"
+                :disabled="status.loadingItem === item.id"
                 @click="addToCart(item.id)">
+                <i class="spinner-border spinner-border-sm"
+                  v-if="status.loadingItem === item.id"
+                ></i>
                 <i class="fas fa-shopping-cart"></i>
                 加到購物車
               </b-button>
@@ -123,6 +127,7 @@ export default {
         });
     },
     addToCart(id, quantity = 1) {
+      this.status.loadingItem = id;
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       const cart = {
@@ -133,6 +138,7 @@ export default {
         .post(url, cart)
         .then(() => {
           this.$bus.$emit('updateCart');
+          this.status.loadingItem = '';
           this.isLoading = false;
           this.$toast.success('已加入購物車～');
         })

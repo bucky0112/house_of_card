@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
     <loading :active.sync="isLoading" />
-    <div class="container">
+    <div class="container" style="margin-top: 100px;">
       <div class="d-flex justify-content-center" v-if="!cart[0]">
         <div style="margin-top: 100px; margin-bottom: 200px">
           <h2 class="mb-5">您的購物車沒有商品唷，請回商品頁面選購吧～</h2>

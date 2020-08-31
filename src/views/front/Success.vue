@@ -20,5 +20,20 @@
       background-position: center center;"
       ></div>
     </div>
+    <!-- <b-container fluid>
+      <div class="righ_side">
+        <b-img
+          fluid-grow
+          class="img"
+          src="https://images.unsplash.com/photo-1586810165616-94c631fc2f79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+        ></b-img>
+      </div>
+    </b-container> -->
   </div>
 </template>
+
+// <style lang="scss" scoped>
+// .img {
+//   opacity: 0.8;
+// }
+// </style>

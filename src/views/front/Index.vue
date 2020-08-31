@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <Footer></Footer>
+    <Footer class="mt-3"></Footer>
   </div>
 </template>
 
