@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="position-relative d-flex">
-      <div class="container d-flex flex-column" style="min-height: 100vh;">
+      <b-container class="d-flex flex-column" style="min-height: 100vh;">
         <div class="row my-auto pb-7">
-          <div class="col-md-4 d-flex flex-column">
-            <div class="my-auto">
+          <div class="col d-flex flex-column">
+            <div style="margin-top: 280px">
               <h2>感謝您的支持，</h2>
               <h2>您的商品會儘快送達。</h2>
               <router-link to="/">
@@ -13,27 +13,12 @@
             </div>
           </div>
         </div>
-      </div>
+      </b-container>
       <div
         class="w-md-50 w-100 position-absolute opacity-1"
-        style="z-index: -1; min-height: 100vh; right: 0; background-image: url(https://images.unsplash.com/photo-1586810165616-94c631fc2f79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+        style="z-index: -1; min-height: 100vh; right: 0; background-image: url(https://images.unsplash.com/photo-1502355984-b735cb2550ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
       background-position: center center;"
       ></div>
     </div>
-    <!-- <b-container fluid>
-      <div class="righ_side">
-        <b-img
-          fluid-grow
-          class="img"
-          src="https://images.unsplash.com/photo-1586810165616-94c631fc2f79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-        ></b-img>
-      </div>
-    </b-container> -->
   </div>
 </template>
-
-// <style lang="scss" scoped>
-// .img {
-//   opacity: 0.8;
-// }
-// </style>
