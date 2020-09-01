@@ -150,9 +150,16 @@
       </div>
     </b-container>
     <b-container class="mt-5">
-      <div class="about_game mb-3"><h2>更認識桌遊了嗎？</h2></div>
-      <router-link to="/products" class="text-dark mt-5 mt-3 h5">
-        <i class="fas fa-chevron-right mr-2"></i>
+      <div class="about_game mb-3"
+        data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000"
+      >
+        <h2>更認識桌遊了嗎？</h2>
+      </div>
+      <router-link to="/products"
+        class="text-dark mt-5 mt-3 h5">
+        <i class="far fa-arrow-alt-circle-right"></i>
         去找些來玩吧～
       </router-link>
     </b-container>

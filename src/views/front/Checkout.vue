@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading :active.sync="isLoading" />
     <div class="container" style="margin-top: 100px;">
       <div class="row justify-content-center">
         <div class="col-md-10">
@@ -98,7 +97,6 @@ export default {
     return {
       mySteps: ['購物車', '填寫資料', '確認訂單'],
       currentStep: 2,
-      isLoading: false,
       order: {
         coupon: null,
         amount: 0,
@@ -129,30 +127,30 @@ export default {
   methods: {
     getOrder() {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}`;
-      this.isLoading = true;
+      const loader = this.$loading.show();
       this.axios
         .get(url)
         .then((res) => {
           this.order = res.data.data;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },
     payingOrder() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}/paying`;
       this.axios
         .post(url)
         .then(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.success('謝謝您的購買，會儘快幫您寄出商品～');
           this.$router.push('/success');
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },

@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div class="dashboard">
+    <back-to-top>
+      <button type="button" class="btn btn-info btn-to-top">
+        <i class="fas fa-arrow-circle-up"></i>
+      </button>
+    </back-to-top>
     <Navbar :token="token"></Navbar>
     <router-view :token="token" v-if="checkSuccess" />
   </div>
@@ -46,3 +51,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.btn-to-top {
+  width: 80px;
+  height: 80px;
+  padding: 10px 16px;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 22px;
+}
+</style>

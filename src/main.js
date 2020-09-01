@@ -10,6 +10,8 @@ import {
   ValidationObserver,
   ValidationProvider, configure, localize, extend,
 } from 'vee-validate';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Toast from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
 import BackToTop from 'vue-backtotop';
@@ -46,7 +48,14 @@ Vue.use(Toast, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(BackToTop);
-Vue.component('Loading', Loading);
+// Vue.component('Loading', Loading);
+Vue.use(Loading, {
+  color: '#353C43',
+  loader: 'bars',
+  width: 80,
+  height: 80,
+  backgroundColor: '#ffffff',
+});
 Vue.component('step-progress', StepProgress);
 Vue.filter('thousands', thousandsFilter);
 Vue.prototype.$bus = new Vue();
@@ -64,6 +73,9 @@ configure({
 localize('tw', zhTW);
 
 new Vue({
+  created() {
+    AOS.init();
+  },
   router,
   render: (h) => h(App),
 }).$mount('#app');

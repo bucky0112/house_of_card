@@ -168,7 +168,6 @@ export default {
       status: {
         fileUploading: false,
       },
-      isLoading: false,
       show: false,
       variants: [
         'primary',
@@ -193,18 +192,22 @@ export default {
   methods: {
     // 取得單一產品資料，傳入產品的 id
     getProduct(id) {
+      const loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/product/${id}`;
       this.axios
         .get(api)
         .then((res) => {
           this.$bvModal.show('productModal');
           this.tempProduct = res.data.data;
+          loader.hide();
         })
         .catch(() => {
+          loader.hide();
         });
     },
     // 上傳資料
     updateProduct() {
+      const loader = this.$loading.show();
       let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/product`;
       let httpMethod = 'post';
       // 如果不是新增就切換編輯商品 api
@@ -216,6 +219,7 @@ export default {
         .then(() => {
           this.$emit('update'); // 重新取得全部產品資料
           this.$bvModal.hide('productModal');
+          loader.hide();
           Toast.fire({
             title: '新增資料成功',
             icon: 'success',
@@ -223,6 +227,7 @@ export default {
         })
         .catch(() => {
           this.$bvModal.hide('productModal');
+          loader.hide();
           Toast.fire({
             title: '出現錯誤了',
             icon: 'error',
@@ -231,6 +236,7 @@ export default {
     },
     // 上傳圖片
     uploadFile() {
+      const loader = this.$loading.show();
       const uploadedFile = this.$refs.file.files[0];
       const formData = new FormData();
       formData.append('file', uploadedFile);
@@ -246,10 +252,12 @@ export default {
           this.status.fileUploading = false;
           if (res.status === 200) {
             this.tempProduct.imageUrl.push(res.data.data.path);
+            loader.hide();
           }
         })
         .catch(() => {
           // console.log('上傳不可超過 2 MB'); // eslint-disable-line
+          loader.hide();
           Toast.fire({
             title: '檔案上傳失敗，請檢查檔案是否超過 2 MB',
             icon: 'error',

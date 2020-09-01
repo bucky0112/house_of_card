@@ -1,6 +1,5 @@
 <template>
   <div class="index">
-    <loading :active.sync="isLoading"/>
     <Banner></Banner>
     <b-container>
       <h2 class="mt-5">本月家庭遊戲主打</h2>
@@ -13,6 +12,8 @@
             src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/nORfs93tQEExTOkobavBXIaw6ynIfpgV8e2WlXG7eD3ycs02GLDY2SHOdJ3pRLoodp8NZ94ktDKX6NxJz3VOppp3yysKuPYujY3pNqm4VIxmwUfBLxMRg5GDVFMiYJmG.jpg"
             rounded
             fluid
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-center"
           />
         </div>
         <div class="col-md-4 m-auto">
@@ -30,6 +31,8 @@
             src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Gm9NzzvW1rLRczWlByQtu4EDc7cGcqRPLDk8FRWPnn7cvpt4x1v6AhsrRoy0hO5gIgD7bmr0dfJwutcEIfevtZdKYfXqNC5ktJkGkgGWHhDL6B28llDrafmCJPmnWb7B.jpg"
             rounded
             fluid
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom"
           />
         </div>
         <div class="col-md-4 m-auto text-center">
@@ -56,6 +59,8 @@
             src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/kQTEkwjr8Sqys68hB1tXujFGdKdqLlJ7JrAhQE8hPWktoIEJg07k76Kwq8pXoXej110v650QwRglVsEnCMIed9lmPUba4g1OBOHqnD73iIdQWR51d4Lem7ya26fM4AjM.jpg"
             rounded
             fluid
+            data-aos="fade-up"
+            data-aos-anchor-placement="bottom-center"
           />
         </div>
         <div class="col-md-4 m-auto">
@@ -88,9 +93,7 @@ export default {
     Footer,
   },
   data() {
-    return {
-      isLoading: false,
-    };
+    return {};
   },
 };
 </script>

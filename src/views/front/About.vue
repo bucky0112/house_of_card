@@ -4,7 +4,9 @@
       <h2>關於 House of Card</h2>
       <h4>服務項目與未來走向</h4>
     </b-container>
-    <b-container class="service pb-5" fluid>
+    <b-container class="service pb-5"
+      data-aos="fade-right"
+      fluid>
       <div class="about_service"><h3>服務項目</h3></div>
       <p class="mt-3 container">
         Hi～大家好！我們是一群平常喜歡電玩，卻突然一腳踏進桌遊的世界，並熱愛分享桌遊樂趣的宅宅，感謝您喜愛我們提供的服務。
@@ -12,7 +14,9 @@
         國內外無論是熱門冷門款式，我們希望能盡可能地幫助您購買想要的桌遊。
       </p>
     </b-container>
-    <b-container class="future pb-5" fluid>
+    <b-container class="future pb-5"
+      data-aos="fade-left"
+      fluid>
       <div class="about_future"><h3>未來走向</h3></div>
       <p class="mt-3 container">
         由於桌遊好買，但是好咖難求，這應該是許多玩家的共同心聲（嗚嗚～邊緣人இдஇ）<br/>

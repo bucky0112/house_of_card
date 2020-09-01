@@ -1,6 +1,5 @@
 <template>
   <div class="products">
-    <loading :active.sync="isLoading"/>
     <b-container style="margin-top: 100px;">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white px-0">
@@ -93,7 +92,6 @@ export default {
   data() {
     return {
       products: [],
-      isLoading: false,
       categories: ['家庭遊戲', '派對遊戲', '策略遊戲', '主題遊戲'],
       chooseCategory: '',
       pagination: {},
@@ -108,7 +106,7 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/products?page=${page}`;
       this.axios
         .get(url)
@@ -119,16 +117,16 @@ export default {
           if (categoryName) {
             this.chooseCategory = categoryName;
           }
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },
     addToCart(id, quantity = 1) {
       this.status.loadingItem = id;
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       const cart = {
         product: id,
@@ -139,11 +137,11 @@ export default {
         .then(() => {
           this.$bus.$emit('updateCart');
           this.status.loadingItem = '';
-          this.isLoading = false;
+          loader.hide();
           this.$toast.success('已加入購物車～');
         })
         .catch((err) => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error(`${err.response.data.errors}`);
         });
     },

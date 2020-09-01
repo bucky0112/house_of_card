@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Loading :active.sync="isLoading" />
     <div class="container">
       <div>
         <div class="text-right mt-4">
@@ -82,7 +81,6 @@ export default {
       isNew: false,
       // 放置分頁資料
       pagination: {},
-      isLoading: false,
     };
   },
   props: ['token'],
@@ -93,16 +91,16 @@ export default {
     // 預設 page 為第一頁
     getProducts(page = 1) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/products?page=${page}`;
-      this.isLoading = true;
+      const loader = this.$loading.show();
       this.axios.get(api).then((res) => {
-        this.isLoading = false;
+        loader.hide();
         // 取得產品列表
         this.products = res.data.data;
         // 取得分頁
         this.pagination = res.data.meta.pagination;
       })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
         });
     },
     openModal(isNew, item) {

@@ -1,6 +1,5 @@
 <template>
   <div class="order pt-4">
-    <loading :active.sync="isLoading" />
     <div class="container" style="margin-top: 100px;">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -192,7 +191,6 @@ export default {
     return {
       mySteps: ['購物車', '填寫資料', '確認訂單'],
       currentStep: 1,
-      isLoading: false,
       form: {
         name: '',
         emial: '',
@@ -223,22 +221,22 @@ export default {
   },
   methods: {
     getCart() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.axios
         .get(url)
         .then((res) => {
           this.cart = res.data.data;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },
     createOrder() {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/orders`;
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const order = { ...this.form };
       if (this.coupon.enabled) {
         order.coupon = this.coupon.code;
@@ -247,14 +245,14 @@ export default {
         .post(url, order)
         .then((res) => {
           this.$bus.$emit('updateCart');
-          this.isLoading = false;
+          loader.hide();
           this.$toast.success('成功幫您建立訂單囉～');
           this.$router.push(`/checkout/${res.data.data.id}`);
         })
         .catch(() => {});
     },
     useCoupon() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/coupon/search`;
       this.axios
         .post(url, {
@@ -262,11 +260,11 @@ export default {
         })
         .then((res) => {
           this.coupon = res.data.data;
-          this.isLoading = false;
+          loader.hide();
           this.$toast.success('成功幫您使用折扣囉～');
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('請輸入正確的優惠碼。');
         });
     },

@@ -1,13 +1,12 @@
 <template>
   <div class="cart">
-    <loading :active.sync="isLoading" />
     <div class="container" style="margin-top: 100px;">
       <div class="d-flex justify-content-center" v-if="!cart[0]">
         <div style="margin-top: 100px; margin-bottom: 200px">
           <h2 class="mb-5">您的購物車沒有商品唷，請回商品頁面選購吧～</h2>
           <router-link to="/products"
             class="text-dark mt-5 mt-3 h5">
-            <i class="fas fa-chevron-left mr-2"></i>
+            <i class="far fa-arrow-alt-circle-left"></i>
             繼續購物
           </router-link>
         </div>
@@ -131,7 +130,6 @@ export default {
     return {
       mySteps: ['購物車', '填寫資料', '確認訂單'],
       currentStep: 0,
-      isLoading: false,
       cartTotal: 0,
       cart: [],
     };
@@ -147,52 +145,52 @@ export default {
   },
   methods: {
     getCart() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.axios
         .get(url)
         .then((res) => {
           this.cart = res.data.data;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },
     removeAllCartItem() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping/all/product`;
       this.axios
         .delete(url)
         .then(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$bus.$emit('updateCart');
           this.getCart();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },
     removeCartItem(id) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
       this.axios
         .delete(url)
         .then(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$bus.$emit('updateCart');
           this.getCart();
           this.$toast.success('已刪除商品～');
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },
     updateQuantity(id, num) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       if (num <= 0) return;
       const data = {
@@ -202,13 +200,13 @@ export default {
       this.axios
         .patch(url, data)
         .then(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$bus.$emit('updateCart');
           this.getCart();
           this.$toast.success('已更新商品數量～');
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },

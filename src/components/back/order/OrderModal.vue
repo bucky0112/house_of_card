@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Loading :active.sync="isLoading" />
     <b-modal
       id="orderModal"
       title="客戶資料"
@@ -40,7 +39,6 @@ export default {
       order: {
         user: {},
       },
-      isLoading: false,
       variants: [
         'primary',
         'secondary',

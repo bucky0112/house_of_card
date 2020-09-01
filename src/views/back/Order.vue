@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Loading :active.sync="isLoading" />
     <div class="container">
       <div>
         <table class="table mt-4 table-hover">
@@ -72,7 +71,6 @@ export default {
       order: {
         user: {},
       },
-      isLoading: false,
       pagination: {},
     };
   },
@@ -81,28 +79,28 @@ export default {
   },
   methods: {
     getOrders(page = 1) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/orders?page=${page}`;
       this.axios(api)
         .then((res) => {
           this.orders = res.data.data;
           this.pagination = res.data.meta.pagination;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
         });
     },
     updatePaid(item) {
       let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/paid`;
-      this.isLoading = true;
+      const loader = this.$loading.show();
       if (!item.paid) {
         api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/unpaid`;
       }
       this.axios
         .patch(api, item.id)
         .then(() => {
-          this.isLoading = false;
+          loader.hide();
           this.getOrders();
           Toast.fire({
             title: '付款狀態已修改',
@@ -110,7 +108,7 @@ export default {
           });
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
         });
     },
     openModal(item) {

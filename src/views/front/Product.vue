@@ -1,6 +1,5 @@
 <template>
   <div class="product">
-    <loading :active.sync="isLoading"/>
     <div class="container" style="margin-top: 100px">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white px-0">
@@ -80,7 +79,6 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
       product: {
         title: '',
         imageUrl: [],
@@ -95,22 +93,22 @@ export default {
   },
   methods: {
     getProduct() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const { id } = this.$route.params;
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/product/${id}`;
       this.axios
         .get(url)
         .then((res) => {
           this.product = res.data.data;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error('出了點問題，請再試一次。');
         });
     },
     addToCart() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
       const cart = {
         product: this.product.id,
@@ -120,11 +118,11 @@ export default {
         .post(url, cart)
         .then(() => {
           this.$bus.$emit('updateCart');
-          this.isLoading = false;
+          loader.hide();
           this.$toast.success('已加入購物車～');
         })
         .catch((err) => {
-          this.isLoading = false;
+          loader.hide();
           this.$toast.error(`${err.response.data.errors}`);
         });
     },

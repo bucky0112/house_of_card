@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-navbar type="dark" variant="dark" toggleable="lg">
-      <b-navbar-brand href="#" class="brand-link">
-        House of Card
+      <b-navbar-brand href="#" class="brand-link" to="/">
+        <h1>House of Card</h1>
       </b-navbar-brand>
       <!-- 響應式用於管理<b-collapse is-nav>組件 -->
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -44,7 +44,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.brand-link {
-  font-family: 'Honey Bear', cursive;
+.brand-link h1{
+  background-image: url("~@/assets/slide_logo.png");
+  display: inline-block;
+  background-size: 90px 44px;
+  width: 90px;
+  height: 44px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+  margin-top: 10px;
 }
 </style>

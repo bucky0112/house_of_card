@@ -59,10 +59,10 @@ export default {
   methods: {
     delImage() {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/storage/${this.tempImgStorage.id}`;
-      this.isLoading = true;
+      const loader = this.$loading.show();
       this.axios.delete(url).then(() => {
         this.$emit('update'); // 重新取得全部資料
-        this.isLoading = false;
+        loader.hide();
         this.$bvModal.hide('deleteImageModal'); // 刪除後關閉 modal
         Toast.fire({
           title: '刪除圖片成功',

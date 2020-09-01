@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Loading :active.sync="isLoading" />
     <div class="container">
       <div>
         <div class="text-right mt-4">
@@ -78,7 +77,6 @@ export default {
         code: '',
       },
       isNew: false,
-      isLoading: false,
       pagination: {},
     };
   },
@@ -87,16 +85,16 @@ export default {
   },
   methods: {
     getCoupons(page = 1) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/coupons?page=${page}`;
       this.axios(api)
         .then((res) => {
           this.coupons = res.data.data;
           this.pagination = res.data.meta.pagination;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
         });
     },
     openModal(isNew, item) {

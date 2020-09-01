@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Loading :active.sync="isLoading" />
     <b-modal
       id="couponModal"
       title="建立優惠券"
@@ -95,7 +94,6 @@ export default {
       },
       dueDate: '',
       dueTime: '',
-      isLoading: false,
       variants: [
         'primary',
         'secondary',
@@ -131,7 +129,7 @@ export default {
         });
     },
     updateCoupon() {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       let api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/ec/coupon`;
       let httpMethod = 'post';
       let msg = '新增';
@@ -147,7 +145,7 @@ export default {
           this.$emit('update');
           this.dueDate = '';
           this.dueTime = '';
-          this.isLoading = false;
+          loader.hide();
           Toast.fire({
             title: `優惠券${msg}成功`,
             icon: 'success',
@@ -155,7 +153,7 @@ export default {
         })
         .catch(() => {
           this.$bvModal.hide('couponModal');
-          this.isLoading = false;
+          loader.hide();
         });
     },
   },

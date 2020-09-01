@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Loading :active.sync="isLoading" />
     <div class="container">
       <div>
         <div class="mt-4">
@@ -51,7 +50,6 @@ export default {
     return {
       imgStorage: {},
       tempImgStorage: {},
-      isLoading: false,
       pagination: {},
     };
   },
@@ -60,16 +58,16 @@ export default {
   },
   methods: {
     getImgStorage(page = 1) {
-      this.isLoading = true;
+      const loader = this.$loading.show();
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/admin/storage?page=${page}`;
       this.axios(api)
         .then((res) => {
           this.imgStorage = res.data.data;
           this.pagination = res.data.meta.pagination;
-          this.isLoading = false;
+          loader.hide();
         })
         .catch(() => {
-          this.isLoading = false;
+          loader.hide();
         });
     },
     openModal(item) {
