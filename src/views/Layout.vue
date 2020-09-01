@@ -1,5 +1,10 @@
 <template>
   <div class="layout">
+    <back-to-top>
+      <button type="button" class="btn btn-info btn-to-top">
+        <i class="fas fa-arrow-circle-up"></i>
+      </button>
+    </back-to-top>
     <Navbar></Navbar>
     <router-view></router-view>
   </div>
@@ -15,3 +20,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.btn-to-top {
+  width: 80px;
+  height: 80px;
+  padding: 10px 16px;
+  border-radius: 50%;
+  font-size: 30px;
+  line-height: 22px;
+}
+</style>

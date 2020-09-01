@@ -12,6 +12,7 @@ import {
 } from 'vee-validate';
 import Toast from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
+import BackToTop from 'vue-backtotop';
 import StepProgress from 'vue-step-progress';
 import 'vue-step-progress/dist/main.css';
 import * as rules from 'vee-validate/dist/rules';
@@ -44,6 +45,7 @@ Vue.use(VueAwesomeSwiper /* ,{ default options with global component } */);
 Vue.use(Toast, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(BackToTop);
 Vue.component('Loading', Loading);
 Vue.component('step-progress', StepProgress);
 Vue.filter('thousands', thousandsFilter);
