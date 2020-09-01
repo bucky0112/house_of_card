@@ -2,7 +2,7 @@
   <div>
     <b-navbar toggleable="lg" type="light" variant="light" fixed="top">
       <b-navbar-brand href="#" to="/" class="brand-link">
-        House of Card
+        <h1>House of Card</h1>
       </b-navbar-brand>
       <!-- 響應式用於管理<b-collapse is-nav>組件 -->
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -25,8 +25,19 @@
 <script></script>
 
 <style scoped lang="scss">
-.brand-link {
-  font-family: 'Honey Bear', cursive;
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+
+.brand-link h1{
+  background-image: url("~@/assets/slide_logo.png");
+  display: inline-block;
+  background-size: 90px 44px;
+  width: 90px;
+  height: 44px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+  margin-top: 10px;
 }
 .button-group {
   font-size: 18px;
