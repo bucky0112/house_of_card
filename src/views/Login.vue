@@ -1,50 +1,51 @@
 <template>
-  <div class="container auth">
-    <div class="auth__header">
-      <div class="auth__logo">
-        <img
-          height="90"
-          src="@/assets/logo.png"
-          alt="Vue logo"
-        />
+  <div>
+    <div class="container auth">
+      <div class="auth__header">
+        <div class="auth__logo">
+          <img height="90" src="@/assets/logo.png" alt="Vue logo" />
+        </div>
       </div>
-    </div>
-    <div class="auth__body">
-      <form class="form-signin auth__form" autocomplete="off" @submit.prevent="signin">
-        <div class="auth__form_body">
-          <h1 class="h3 auth__form_title">使用者登入</h1>
-          <div>
-            <div class="form-label-group mb-3">
-              <label class="text-uppercase small" for="inputEmail">Email</label>
-              <input
-                type="email"
-                id="inputEmail"
-                name="email"
-                class="form-control"
-                placeholder="請輸入 email"
-                required
-                autofocus
-                v-model="user.email"
-              />
-            </div>
-            <div class="form-label-group">
-              <label class="text-uppercase small" for="inputPassword">密碼</label>
-              <input
-                type="password"
-                id="inputPassword"
-                name="password"
-                class="form-control"
-                placeholder="請輸入密碼"
-                required
-                v-model="user.password"
-              />
+      <div class="auth__body">
+        <form class="form-signin auth__form" autocomplete="off" @submit.prevent="signin">
+          <div class="auth__form_body">
+            <h1 class="h3 auth__form_title">使用者登入</h1>
+            <div>
+              <div class="form-label-group mb-3">
+                <label class="text-uppercase small" for="inputEmail">Email</label>
+                <input
+                  type="email"
+                  id="inputEmail"
+                  name="email"
+                  class="form-control"
+                  placeholder="請輸入 email"
+                  required
+                  autofocus
+                  v-model="user.email"
+                />
+              </div>
+              <div class="form-label-group">
+                <label class="text-uppercase small" for="inputPassword">密碼</label>
+                <input
+                  type="password"
+                  id="inputPassword"
+                  name="password"
+                  class="form-control"
+                  placeholder="請輸入密碼"
+                  required
+                  v-model="user.password"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div class="auth__form_actions">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">登入</button>
-        </div>
-      </form>
+          <div class="auth__form_actions">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">登入</button>
+            <router-link to="/" style="text-decoration: none;">
+              <button class="btn btn-dark btn-lg btn-block mt-3">回首頁</button>
+            </router-link>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>

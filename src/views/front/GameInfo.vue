@@ -63,7 +63,7 @@
           />
         </div>
         <div class="col-md-4 m-auto">
-          <h4 class="mt-2">兒童遊戲(Children's Game)</h4>
+          <h4 class="mt-2">兒童遊戲(Children's Games)</h4>
           <p class="about-tg text-muted">
             顧名思義這個分類的遊戲，主要是設計給 3 到 5 歲的小孩遊玩，通常不會有太多的文字說明，可以讓小朋友馬上乖乖坐好（也許爸媽都應該要有？）放聲大笑的玩，
             不過因為好上手，一般新手玩家也是考慮可以從這邊入門。
@@ -95,7 +95,7 @@
           />
         </div>
         <div class="col-md-4 m-auto">
-          <h4 class="mt-2">戰爭遊戲(War Game)</h4>
+          <h4 class="mt-2">戰爭遊戲(War Games)</h4>
           <p class="about-tg text-muted">
             戰爭遊戲是一個有趣的分類，它有部份會跟策略遊戲雷同，不過簡易區分兩類的差別是有軍事或是戰爭的元素在其中，可以讓玩家扮演個人或代表部隊或甚至是國家來攻城掠地。
           </p>
@@ -126,7 +126,7 @@
           />
         </div>
         <div class="col-md-4 m-auto">
-          <h4 class="mt-2">主題遊戲(Thematic Game)</h4>
+          <h4 class="mt-2">主題遊戲(Thematic Games)</h4>
           <p class="about-tg text-muted">
             又稱情境遊戲，會有一個故事設定讓你融入整個環境，比如一行人組隊去打怪、打殭屍，並經常有事件發生，這時候你跟組員就需要團結一致共同對抗敵人，不過也要小心也許有內奸（！？）。
           </p>

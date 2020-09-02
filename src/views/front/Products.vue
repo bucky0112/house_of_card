@@ -49,17 +49,17 @@
                 <b-badge variant="secondary" class="float-right">{{ item.category }}</b-badge>
                 <div class="d-flex justify-content-between mb-0">
                   <div class="price text-success" v-if="!item.origin_price">
-                    <h5 class="mt-4">{{ item.price | thousands }}</h5>
+                    <h5 class="mt-4" style="color: #353C43;">{{ item.price | thousands }}</h5>
                   </div>
                   <div v-else>
-                    <del class="h6">{{ item.origin_price | thousands }}</del>
-                    <div class="h5 text-primary">{{ item.price | thousands }}</div>
+                    <del class="h6" style="color: red;">{{ item.origin_price | thousands }}</del>
+                    <div class="h5">{{ item.price | thousands }}</div>
                   </div>
                 </div>
               </b-card-text>
             </router-link>
             <template v-slot:footer class="bg-white p-0 border-0">
-              <b-button variant="outline-primary"
+              <b-button variant="primary"
                 class="btn-block"
                 :disabled="status.loadingItem === item.id"
                 @click="addToCart(item.id)">
@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       products: [],
-      categories: ['家庭遊戲', '派對遊戲', '策略遊戲', '主題遊戲'],
+      categories: ['家庭遊戲', '派對遊戲', '策略遊戲', '主題遊戲', '戰爭遊戲', '兒童遊戲', '抽象遊戲', '客製遊戲'],
       chooseCategory: '',
       pagination: {},
       tempProduct: {},
