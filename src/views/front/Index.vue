@@ -1,8 +1,9 @@
 <template>
   <div class="index">
     <Banner></Banner>
+    <div id="target" style="height: 100px"></div>
     <b-container>
-      <h2 class="mt-5">本月家庭遊戲主打</h2>
+      <h2 class="mb-3">本月家庭遊戲主打</h2>
       <Carousel></Carousel>
     </b-container>
     <div class="container my-7 mt-5">

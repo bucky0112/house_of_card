@@ -41,14 +41,15 @@ const options = {
   icon: 'fas fa-rocket',
   rtl: false,
 };
+const VueScrollTo = require('vue-scrollto');
 
+Vue.use(VueScrollTo);
 Vue.use(VueAxios, axios);
 Vue.use(VueAwesomeSwiper /* ,{ default options with global component } */);
 Vue.use(Toast, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(BackToTop);
-// Vue.component('Loading', Loading);
 Vue.use(Loading, {
   color: '#353C43',
   loader: 'bars',

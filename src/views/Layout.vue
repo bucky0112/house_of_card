@@ -23,8 +23,8 @@ export default {
 
 <style lang="scss" scoped>
 .btn-to-top {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   padding: 10px 16px;
   border-radius: 50%;
   font-size: 30px;

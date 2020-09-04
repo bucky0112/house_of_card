@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="light" variant="light" fixed="top">
+    <b-navbar toggleable="lg" type="light" variant="primary" class="header" fixed="top">
       <b-navbar-brand href="#" to="/" class="brand-link">
         <h1>House of Card</h1>
       </b-navbar-brand>
@@ -9,12 +9,16 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="button-group ml-auto">
           <!-- <b-nav-item>有包含 router-link 組件，提供一個 to 屬性值生成一個 <router-link> -->
-          <b-nav-item to="/"><i class="fas fa-home"></i>首頁</b-nav-item>
-          <b-nav-item to="/products"><i class="fas fa-dice"></i>商品一覽</b-nav-item>
-          <b-nav-item to="/gameinfo"><i class="fas fa-dice-two"></i>認識桌遊</b-nav-item>
-          <b-nav-item to="/about"><i class="fas fa-smile-wink"></i>關於我們</b-nav-item>
-          <b-nav-item to="/login"><i class="fas fa-user-cog"></i>登入</b-nav-item>
-          <b-nav-item href="#" to="/Cart">
+          <b-nav-item to="/" style="font-size: 20px"><i class="fas fa-home"></i>首頁</b-nav-item>
+          <b-nav-item to="/products" style="font-size: 20px"><i class="fas fa-dice"></i>商品一覽
+          </b-nav-item>
+          <b-nav-item to="/gameinfo" style="font-size: 20px"><i class="fas fa-dice-two"></i>認識桌遊
+          </b-nav-item>
+          <b-nav-item to="/about" style="font-size: 20px"><i class="fas fa-smile-wink"></i>關於我們
+          </b-nav-item>
+          <b-nav-item to="/login" style="font-size: 20px"><i class="fas fa-user-cog"></i>登入
+          </b-nav-item>
+          <b-nav-item href="#" to="/Cart" style="font-size: 20px">
             <i class="fas fa-shopping-cart"></i>
             <b-badge pill variant="danger" v-if="cart.length">{{ cart.length }}</b-badge>
           </b-nav-item>
