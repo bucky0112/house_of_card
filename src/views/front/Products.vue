@@ -1,5 +1,22 @@
 <template>
   <div class="products">
+    <!-- 遊戲分類選擇 -->
+    <b-sidebar
+      id="sidebar-backdrop"
+      backdrop-variant="light"
+      backdrop
+      title="請選擇分類"
+      shadow
+    >
+      <b-button-group vertical class="category_btn">
+        <b-button
+          variant="dark"
+          v-for="(item, i) in categories" :key="i"
+          @click.prevent="chooseCategory = item"
+          :class="{ active: item === chooseCategory }"
+        >{{ item }}</b-button>
+      </b-button-group>
+    </b-sidebar>
     <b-container style="margin-top: 100px;">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white px-0">
@@ -11,27 +28,20 @@
           </li>
         </ol>
       </nav>
-      <div>
-        <b-button-group>
-          <b-button
-            variant="dark"
-            @click.prevent="chooseCategory = ''"
-            :class="{ active: chooseCategory === '' }"
-          >
-            全部遊戲
-          </b-button>
-          <b-button
-            variant="dark"
-            v-for="(item, i) in categories" :key="i"
-            @click.prevent="chooseCategory = item"
-            :class="{ active: item === chooseCategory }"
-          >
-            {{ item }}
-          </b-button>
-        </b-button-group>
-      </div>
+      <b-button-group size="lg">
+        <b-button
+          variant="dark"
+          @click.prevent="chooseCategory = ''"
+          :class="{ active: chooseCategory === '' }"
+        >
+          全部遊戲
+        </b-button>
+        <!-- 打開旁邊的 sidebar 選擇遊戲分類 -->
+        <b-button v-b-toggle.sidebar-backdrop>遊戲分類</b-button>
+      </b-button-group>
       <div class="row">
-        <div class="col-12 col-md-6 col-lg-3" v-for="(item, i) in filterCategory" :key="i">
+        <div class="col-12 col-md-6 col-lg-3"
+          v-for="(item, i) in filterCategory" :key="i">
           <b-card class="mt-md-5 mt-3 mb-8" border-variant="light">
             <template v-slot:header>
               <h4 class="mb-0">{{ item.title }}</h4>
@@ -163,6 +173,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.category_btn {
+  margin-top: 50px;
+  button {
+    padding: 25px 70px;
+  }
+}
+
 a {
   color:inherit;
   text-decoration: none;
