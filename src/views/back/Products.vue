@@ -49,7 +49,7 @@
           </tbody>
         </table>
       </div>
-      <Pagination :pages="pagination" @emitPages="getProducts"></Pagination>
+      <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
       <ProductModal ref="productModal" :isNew="isNew" @update="getProducts"></ProductModal>
       <DelProductModal
         :temp-product="tempProduct"

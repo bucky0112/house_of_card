@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <Pagination :pages="pagination" @emitPages="getCoupons"></Pagination>
+    <Pagination :pages="pagination" @emit-pages="getCoupons"></Pagination>
     <CouponModal ref="couponModal" :isNew="isNew" @update="getCoupons"></CouponModal>
     <DelCouponModal :temp-coupon="tempCoupon" @update="getCoupons"></DelCouponModal>
   </div>

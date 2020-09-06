@@ -50,7 +50,7 @@
         </table>
       </div>
     </div>
-    <Pagination :pages="pagination" @emitPages="getOrders"></Pagination>
+    <Pagination :pages="pagination" @emit-pages="getOrders"></Pagination>
     <OrderModal ref="orderModal"></OrderModal>
   </div>
 </template>

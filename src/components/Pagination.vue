@@ -53,7 +53,7 @@ export default {
   methods: {
     // item 是點擊的分頁按鈕
     emitPages(item) {
-      this.$emit('emitPages', item);
+      this.$emit('emit-pages', item);
     },
   },
 };

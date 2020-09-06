@@ -39,52 +39,47 @@
         <!-- 打開旁邊的 sidebar 選擇遊戲分類 -->
         <b-button v-b-toggle.sidebar-backdrop>遊戲分類</b-button>
       </b-button-group>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-12 col-md-6 col-lg-3"
           v-for="(item, i) in filterCategory" :key="i">
-          <b-card class="mt-md-5 mt-3 mb-8" border-variant="light">
-            <template v-slot:header>
-              <h4 class="mb-0">{{ item.title }}</h4>
-            </template>
+          <b-card no-body class="product_card mb-5">
             <router-link :to="`/product/${item.id}`">
-              <b-card-text>
-                <div
-                  style="
-                  height: 200px;
-                  background-size: cover;
-                  background-position: center;"
-                  class="mb-4"
-                  :style="{ backgroundImage: `url(${ item.imageUrl[0] })` }"
-                ></div>
-                <b-badge variant="secondary" class="float-right">{{ item.category }}</b-badge>
-                <div class="d-flex justify-content-between mb-0">
-                  <div class="price text-success" v-if="!item.origin_price">
-                    <h5 class="mt-4" style="color: #353C43;">{{ item.price | thousands }}</h5>
-                  </div>
-                  <div v-else>
-                    <del class="h6" style="color: red;">{{ item.origin_price | thousands }}</del>
-                    <div class="h5">{{ item.price | thousands }}</div>
-                  </div>
-                </div>
-              </b-card-text>
+              <div
+                class="img"
+                :style="{ backgroundImage: `url(${ item.imageUrl[0] })` }"
+              >
+                <b-badge variant="info" class="float-right mt-2 mr-2">
+                  {{ item.category }}
+                </b-badge>
+              </div>
             </router-link>
-            <template v-slot:footer class="bg-white p-0 border-0">
-              <b-button variant="primary"
-                class="btn-block"
-                :disabled="status.loadingItem === item.id"
-                @click="addToCart(item.id)">
-                <i class="spinner-border spinner-border-sm"
-                  v-if="status.loadingItem === item.id"
-                ></i>
-                <i class="fas fa-shopping-cart"></i>
-                加到購物車
-              </b-button>
-            </template>
+            <b-row>
+              <b-col cols="8" class="details">
+                <div>
+                  <strong>{{ item.title }}</strong>
+                </div>
+                <div>{{ item.price | thousands }}</div>
+              </b-col>
+              <b-col cols="4" class="buy pt-2 pl-0">
+                <b-button
+                  variant="link"
+                  class="buy_btn"
+                  :disabled="status.loadingItem === item.id"
+                  @click="addToCart(item.id)"
+                >
+                  <i class="spinner-border
+                    spinner-border-sm"
+                    v-if="status.loadingItem === item.id"
+                  ></i>
+                  <i class="fas fa-cart-plus" v-else></i>
+                </b-button>
+              </b-col>
+            </b-row>
           </b-card>
         </div>
       </div>
     </b-container>
-    <Pagination :pages="pagination" @emitPages="getProducts" class="mt-5"/>
+    <Pagination :pages="pagination" @emit-pages="getProducts" class="mt-5"/>
     <Footer></Footer>
   </div>
 </template>
@@ -152,6 +147,7 @@ export default {
         })
         .catch((err) => {
           loader.hide();
+          this.status.loadingItem = '';
           this.$toast.error(`${err.response.data.errors}`);
         });
     },
@@ -180,8 +176,42 @@ export default {
   }
 }
 
-a {
-  color:inherit;
-  text-decoration: none;
+.product_card {
+  border-radius: 10px 10px 10px 10px;
+  overflow: hidden;
+  box-shadow: 0;
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+  &:hover{
+    transform: scale(1);
+    box-shadow: 5px 20px 30px rgba(0,0,0,0.2);}
+
+  .img {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: solid thin rgba(0,0,0,0.1);
+  }
+
+  .details {
+    padding: 20px;
+  }
+
+  .buy {
+    border-left: solid thin rgba(0,0,0,0.1);
+    transition: background 0.5s;
+      i{
+        font-size: 25px;
+        padding: 15px;
+        color: #254053;
+        transition: transform 0.5s;
+      }
+      &:hover{
+        background: #A6CDDE;
+      }
+      &:hover i{
+        color:#00394B;
+      }
+  }
 }
 </style>

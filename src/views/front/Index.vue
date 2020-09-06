@@ -60,8 +60,7 @@
             src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/kQTEkwjr8Sqys68hB1tXujFGdKdqLlJ7JrAhQE8hPWktoIEJg07k76Kwq8pXoXej110v650QwRglVsEnCMIed9lmPUba4g1OBOHqnD73iIdQWR51d4Lem7ya26fM4AjM.jpg"
             rounded
             fluid
-            data-aos="fade-up"
-            data-aos-anchor-placement="bottom-center"
+            data-aos="flip-left"
           />
         </div>
         <div class="col-md-4 m-auto">

@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <Pagination :pages="pagination" @emitPages="getImgStorage"></Pagination>
+    <Pagination :pages="pagination" @emit-pages="getImgStorage"></Pagination>
     <DeleteImageModal :temp-img-storage="tempImgStorage" @update="getImgStorage"></DeleteImageModal>
   </div>
 </template>
