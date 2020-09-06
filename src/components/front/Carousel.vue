@@ -95,7 +95,7 @@ export default {
           id:
             'Y3GsEiRXgiHeIEwW0zMiLpyQWcGnnqA0JgS4FrcDLhCpTznVPsyamMRpQanZxUYv',
           img:
-            'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/HQWy8n499QM1NDmnVb6rTVxzI5qy4VkbyUkqBlnP6Kr0BP8h2I1n1fw4CeUlJnpJJzu43jlJJ6fBypqwGWqnHXCMyXkNjaQAychB53b0boakdRW5AuwgDtj8cBIhJUwH.jpg',
+            'https://hexschool-api.s3.us-west-2.amazonaws.com/custom/Dun1aYlHGL5PfaVsdnNAevz0MEl1wVyO7TcpPDqYUqU5pqjwQDrVZ31hqMBXG2agpJxcPZYu9YVShv2XVNt3pSxJMKdnASXdWhEiKfZkUAdzorSsRWZ62mGZrPaTXHvg.jpg',
           title: '光合作用',
           price: 1800,
           origin_price: 2100,
