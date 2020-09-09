@@ -24,7 +24,7 @@
           </thead>
           <tbody>
             <tr v-for="(item, i) in products" :key="i">
-              <th scope="row">{{ i+1 }}</th>
+              <th scope="row">{{ i + 1 }}</th>
               <td>{{ item.category }}</td>
               <td>{{ item.title }}</td>
               <td>{{ item.origin_price | thousands }}</td>
