@@ -73,7 +73,6 @@
 import Footer from '@/components/front/Footer.vue';
 
 export default {
-  name: 'Product',
   components: {
     Footer,
   },

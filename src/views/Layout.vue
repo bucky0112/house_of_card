@@ -14,7 +14,6 @@
 import Navbar from '@/components/front/Navbar.vue';
 
 export default {
-  name: 'Layout',
   components: {
     Navbar,
   },

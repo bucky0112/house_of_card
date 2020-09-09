@@ -86,7 +86,6 @@ import Carousel from '@/components/front/Carousel.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
-  name: 'Index',
   components: {
     Banner,
     Carousel,

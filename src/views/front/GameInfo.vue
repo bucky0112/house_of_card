@@ -171,7 +171,6 @@
 import Footer from '@/components/front/Footer.vue';
 
 export default {
-  name: 'GameInfo',
   components: {
     Footer,
   },

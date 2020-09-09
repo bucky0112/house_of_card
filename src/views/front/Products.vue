@@ -89,7 +89,6 @@ import Pagination from '@/components/Pagination.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
-  name: 'Products',
   components: {
     Pagination,
     Footer,

@@ -29,6 +29,16 @@
   </div>
 </template>
 
+<script>
+import Footer from '@/components/front/Footer.vue';
+
+export default {
+  components: {
+    Footer,
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .title {
   height: 400px;
@@ -100,13 +110,3 @@ p {
   text-align: left;
 }
 </style>
-
-<script>
-import Footer from '@/components/front/Footer.vue';
-
-export default {
-  components: {
-    Footer,
-  },
-};
-</script>
