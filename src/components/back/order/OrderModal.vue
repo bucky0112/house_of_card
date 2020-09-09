@@ -42,12 +42,6 @@ export default {
         user: {},
       },
       variants: [
-        'primary',
-        'secondary',
-        'success',
-        'warning',
-        'danger',
-        'info',
         'light',
         'dark',
       ],

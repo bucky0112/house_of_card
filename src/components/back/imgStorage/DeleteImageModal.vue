@@ -38,12 +38,7 @@ export default {
     return {
       show: false,
       variants: [
-        'primary',
-        'secondary',
-        'success',
-        'warning',
         'danger',
-        'info',
         'light',
         'dark',
       ],
