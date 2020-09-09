@@ -7,13 +7,16 @@
         </div>
       </div>
       <div class="auth__body">
-        <form class="form-signin auth__form" autocomplete="off" @submit.prevent="signin">
+        <b-form class="form-signin auth__form" autocomplete="off" @submit.prevent="signin">
           <div class="auth__form_body">
             <h1 class="h3 auth__form_title">使用者登入</h1>
             <div>
-              <div class="form-label-group mb-3">
-                <label class="text-uppercase small" for="inputEmail">Email</label>
-                <input
+              <b-form-group
+                class="text-uppercase small mb-3"
+                label="Email"
+                label-for="inputEmail"
+              >
+                <b-form-input
                   type="email"
                   id="inputEmail"
                   name="email"
@@ -23,10 +26,13 @@
                   autofocus
                   v-model="user.email"
                 />
-              </div>
-              <div class="form-label-group">
-                <label class="text-uppercase small" for="inputPassword">密碼</label>
-                <input
+              </b-form-group>
+              <b-form-group
+                class="text-uppercase small"
+                label="密碼"
+                label-for="inputPassword"
+              >
+                <b-form-input
                   type="password"
                   id="inputPassword"
                   name="password"
@@ -35,20 +41,62 @@
                   required
                   v-model="user.password"
                 />
-              </div>
+              </b-form-group>
             </div>
           </div>
           <div class="auth__form_actions">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">登入</button>
+            <b-button type="submit" variant="info" size="lg" class="btn-block">登入</b-button>
             <router-link to="/" style="text-decoration: none;">
-              <button class="btn btn-dark btn-lg btn-block mt-3">回首頁</button>
+              <b-button variant="dark" size="lg" class="btn-block mt-3">回首頁</b-button>
             </router-link>
           </div>
-        </form>
+        </b-form>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import Toast from '@/plugins/Toast';
+
+export default {
+  data() {
+    return {
+      user: {
+        email: '',
+        password: '',
+      },
+    };
+  },
+  methods: {
+    signin() {
+      const api = `${process.env.VUE_APP_APIPATH}/api/auth/login`;
+      this.axios
+        .post(api, this.user)
+        .then((res) => {
+          const { token } = res.data;
+          const { expired } = res.data.expired;
+          document.cookie = `token=${token};expires=${new Date(
+            expired * 1000,
+          )};`;
+          this.$router.push('/admin/products');
+          Toast.fire({
+            title: '登入成功',
+            icon: 'success',
+          });
+        })
+        .catch(() => {
+          Toast.fire({
+            title: '帳號或密碼錯誤',
+            icon: 'error',
+          });
+          this.user.email = '';
+          this.user.password = '';
+        });
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Roboto");
@@ -63,7 +111,6 @@ body {
     justify-content: center;
     background-color: #f0f0f0;
     background-image: linear-gradient(#3280e4, #584dc3);
-    // background-image: url(https://picsum.photos/1500/1200/?random);
     background-size: cover;
     background-position: center center;
     position: relative;
@@ -75,7 +122,6 @@ body {
       top: 0;
       right: 0;
       bottom: 0;
-      // background-image: linear-gradient(rgba(#000, 0), rgba(#000, 0.7));
     }
   }
   &__logo {
@@ -123,45 +169,3 @@ body {
   }
 }
 </style>
-
-<script>
-import Toast from '@/plugins/Toast';
-
-export default {
-  data() {
-    return {
-      user: {
-        email: '',
-        password: '',
-      },
-    };
-  },
-  methods: {
-    signin() {
-      const api = `${process.env.VUE_APP_APIPATH}/api/auth/login`;
-      this.axios
-        .post(api, this.user)
-        .then((res) => {
-          const { token } = res.data;
-          const { expired } = res.data.expired;
-          document.cookie = `token=${token};expires=${new Date(
-            expired * 1000,
-          )};`;
-          this.$router.push('/admin/products');
-          Toast.fire({
-            title: '登入成功',
-            icon: 'success',
-          });
-        })
-        .catch(() => {
-          Toast.fire({
-            title: '帳號或密碼錯誤',
-            icon: 'error',
-          });
-          this.user.email = '';
-          this.user.password = '';
-        });
-    },
-  },
-};
-</script>
