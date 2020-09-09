@@ -22,6 +22,7 @@ import zhTW from 'vee-validate/dist/locale/zh_TW.json';
 import App from './App.vue';
 import router from './router';
 import './assets/scss/all.scss';
+// 引入自定義 bootstrapvue 顏色
 import './assets/scss/main.scss';
 import thousandsFilter from './filters/thousands';
 
