@@ -260,7 +260,6 @@ export default {
           }
         })
         .catch(() => {
-          // console.log('上傳不可超過 2 MB'); // eslint-disable-line
           loader.hide();
           Toast.fire({
             title: '檔案上傳失敗，請檢查檔案是否超過 2 MB',
