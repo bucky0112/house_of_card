@@ -202,6 +202,10 @@ export default {
           loader.hide();
         })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
           loader.hide();
         });
     },
@@ -229,7 +233,7 @@ export default {
           this.$bvModal.hide('productModal');
           loader.hide();
           Toast.fire({
-            title: '出現錯誤了',
+            title: '目前遇到錯誤，請再試一次。',
             icon: 'error',
           });
         });

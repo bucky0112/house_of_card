@@ -62,6 +62,7 @@
 import Pagination from '@/components/Pagination.vue';
 import ProductModal from '@/components/back/product/ProductModal.vue';
 import DelProductModal from '@/components/back/product/DelProductModal.vue';
+import Toast from '@/plugins/Toast';
 
 export default {
   components: {
@@ -100,6 +101,10 @@ export default {
         this.pagination = res.data.meta.pagination;
       })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
           loader.hide();
         });
     },

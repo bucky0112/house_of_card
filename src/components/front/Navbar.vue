@@ -70,8 +70,6 @@ export default {
         .get(url)
         .then((res) => {
           this.cart = res.data.data;
-        })
-        .catch(() => {
         });
     },
   },

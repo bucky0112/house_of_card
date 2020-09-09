@@ -59,6 +59,7 @@
 import Pagination from '@/components/Pagination.vue';
 import CouponModal from '@/components/back/coupon/CouponModal.vue';
 import DelCouponModal from '@/components/back/coupon/DelCouponModal.vue';
+import Toast from '@/plugins/Toast';
 
 export default {
   components: {
@@ -94,6 +95,10 @@ export default {
           loader.hide();
         })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
           loader.hide();
         });
     },

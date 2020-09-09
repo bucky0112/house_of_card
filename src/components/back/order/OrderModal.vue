@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import Toast from '@/plugins/Toast';
+
 export default {
   data() {
     return {
@@ -67,6 +69,10 @@ export default {
           this.$bvModal.show('orderModal');
         })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
         });
     },
   },

@@ -12,6 +12,7 @@
 
 <script>
 import Navbar from '@/components/back/Navbar.vue';
+import Toast from '@/plugins/Toast';
 
 export default {
   components: {
@@ -45,6 +46,10 @@ export default {
         })
         .catch(() => {
           // 如果沒有token就會回到登入頁面
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
           this.$router.push('/');
         });
     },

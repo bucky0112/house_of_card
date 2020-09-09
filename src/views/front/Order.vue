@@ -249,7 +249,9 @@ export default {
           this.$toast.success('成功幫您建立訂單囉～');
           this.$router.push(`/checkout/${res.data.data.id}`);
         })
-        .catch(() => {});
+        .catch(() => {
+          this.$toast.error('出現錯誤了，請再試一次。');
+        });
     },
     useCoupon() {
       const loader = this.$loading.show();

@@ -70,6 +70,10 @@ export default {
         });
       })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
           this.$bvModal.hide('delCouponModal');
         });
     },

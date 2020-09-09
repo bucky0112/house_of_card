@@ -40,6 +40,7 @@
 <script>
 import Pagination from '@/components/Pagination.vue';
 import DeleteImageModal from '@/components/back/imgStorage/DeleteImageModal.vue';
+import Toast from '@/plugins/Toast';
 
 export default {
   components: {
@@ -67,6 +68,10 @@ export default {
           loader.hide();
         })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
           loader.hide();
         });
     },

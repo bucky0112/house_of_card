@@ -120,12 +120,16 @@ export default {
         .get(api)
         .then((res) => {
           this.tempCoupon = res.data.data;
-          // console.log(res); // eslint-disable-line
           const dedlineAt = this.tempCoupon.deadline.datetime.split(' ');
           [this.dueDate, this.dueTime] = dedlineAt;
           this.$bvModal.show('couponModal');
         })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
+          this.$bvModal.hide('couponModal');
         });
     },
     updateCoupon() {
@@ -152,6 +156,10 @@ export default {
           });
         })
         .catch(() => {
+          Toast.fire({
+            title: '目前遇到錯誤，請再試一次。',
+            icon: 'error',
+          });
           this.$bvModal.hide('couponModal');
           loader.hide();
         });
