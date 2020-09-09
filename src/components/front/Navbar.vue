@@ -28,28 +28,6 @@
   </div>
 </template>
 
-<script></script>
-
-<style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
-
-.brand-link h1{
-  background-image: url("~@/assets/slide_logo.png");
-  display: inline-block;
-  background-size: 90px 44px;
-  width: 90px;
-  height: 44px;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  text-indent: 101%;
-  white-space: nowrap;
-  margin-top: 10px;
-}
-.button-group {
-  font-size: 18px;
-}
-</style>
-
 <script>
 export default {
   data() {
@@ -75,3 +53,23 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+
+.brand-link h1{
+  background-image: url("~@/assets/slide_logo.png");
+  display: inline-block;
+  background-size: 90px 44px;
+  width: 90px;
+  height: 44px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+  margin-top: 10px;
+}
+.button-group {
+  font-size: 18px;
+}
+</style>
