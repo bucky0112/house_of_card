@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-@import './assets/main.scss';
+@import './assets/scss/main.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';
 
