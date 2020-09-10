@@ -1,18 +1,6 @@
 <template>
   <div>
-    <b-container style="margin-top: 100px;">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-white px-0">
-          <li class="breadcrumb-item">
-            <router-link to="/" class="text-muted">首頁</router-link>
-          </li>
-          <li class="breadcrumb-item">
-            認識桌遊
-          </li>
-        </ol>
-      </nav>
-    </b-container>
-    <b-container>
+    <b-container style="margin-top: 120px;">
       <div class="about_game"><h2>什麼是桌遊？</h2></div>
       <p class="mt-3 text-center">桌遊種類成千上萬，但我們可以依照全球知名網站
         <a href="#" @click="linkToBGG">

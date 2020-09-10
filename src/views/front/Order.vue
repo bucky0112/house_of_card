@@ -1,19 +1,14 @@
 <template>
   <div class="order pt-4">
-    <div class="container" style="margin-top: 100px;">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
+    <b-container style="margin-top: 100px;">
+      <b-row class="justify-content-center mb-5">
+        <b-col cols="8">
           <step-progress :steps="mySteps" :current-step="currentStep"
-          icon-class="fa fa-check" active-color="#53B883"/>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <h3 class="font-weight-bold mb-4 pt-3">填寫資料</h3>
-        </div>
-      </div>
-      <div class="row flex-row-reverse pb-5">
-        <div class="col-md-5 border p-4 mb-4">
+          icon-class="fa fa-check" active-color="#53B883" line-thickness="5"/>
+        </b-col>
+      </b-row>
+      <b-row class="flex-row-reverse pb-5">
+        <b-col md="5" class="border p-4 mb-4">
           <b-table-simple responsive small borderless fixed hover>
             <b-tbody>
               <b-tr v-for="(item, i) in cart" :key="i">
@@ -58,8 +53,8 @@
               <b-button variant="info" @click="useCoupon">使用優惠碼</b-button>
             </b-input-group-append>
           </b-input-group>
-        </div>
-        <div class="col-md-7">
+        </b-col>
+        <b-col md="7">
           <validation-observer v-slot="{ invalid }">
             <b-form @submit.prevent="createOrder">
               <b-form-group>
@@ -173,9 +168,9 @@
               </div>
             </b-form>
           </validation-observer>
-        </div>
-      </div>
-    </div>
+        </b-col>
+      </b-row>
+    </b-container>
     <Footer></Footer>
   </div>
 </template>

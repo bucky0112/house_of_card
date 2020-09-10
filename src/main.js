@@ -46,7 +46,7 @@ const VueScrollTo = require('vue-scrollto');
 
 Vue.use(VueScrollTo);
 Vue.use(VueAxios, axios);
-Vue.use(VueAwesomeSwiper /* ,{ default options with global component } */);
+Vue.use(VueAwesomeSwiper);
 Vue.use(Toast, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);

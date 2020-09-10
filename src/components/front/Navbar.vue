@@ -9,18 +9,26 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="button-group ml-auto">
           <!-- <b-nav-item>有包含 router-link 組件，提供一個 to 屬性值生成一個 <router-link> -->
-          <b-nav-item to="/" style="font-size: 20px"><i class="fas fa-home"></i>首頁</b-nav-item>
-          <b-nav-item to="/products" style="font-size: 20px"><i class="fas fa-dice"></i>商品一覽
+          <b-nav-item to="/" style="font-size: 20px;">
+            <i class="fas fa-home pr-1"></i>首頁
           </b-nav-item>
-          <b-nav-item to="/gameinfo" style="font-size: 20px"><i class="fas fa-dice-two"></i>認識桌遊
+          <b-nav-item to="/products" style="font-size: 20px">
+            <i class="fas fa-dice pr-1"></i>商品一覽
           </b-nav-item>
-          <b-nav-item to="/about" style="font-size: 20px"><i class="fas fa-smile-wink"></i>關於我們
+          <b-nav-item to="/gameinfo" style="font-size: 20px">
+            <i class="fas fa-dice-two pr-1"></i>認識桌遊
           </b-nav-item>
-          <b-nav-item to="/login" style="font-size: 20px"><i class="fas fa-user-cog"></i>登入
+          <b-nav-item to="/about" style="font-size: 20px">
+            <i class="fas fa-smile-wink pr-1"></i>關於我們
+          </b-nav-item>
+          <b-nav-item to="/login" style="font-size: 20px">
+            <i class="fas fa-user-cog pr-1"></i>登入
           </b-nav-item>
           <b-nav-item href="#" to="/Cart" style="font-size: 20px">
             <i class="fas fa-shopping-cart"></i>
-            <b-badge pill variant="danger" v-if="cart.length">{{ cart.length }}</b-badge>
+            <b-badge pill variant="danger" v-if="cart.length" class="cart_num">
+              {{ cart.length }}
+            </b-badge>
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -71,5 +79,9 @@ export default {
 }
 .button-group {
   font-size: 18px;
+}
+.cart_num {
+  float: right;
+  margin-top: -10px;
 }
 </style>

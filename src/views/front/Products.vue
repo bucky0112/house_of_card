@@ -17,17 +17,7 @@
         >{{ item }}</b-button>
       </b-button-group>
     </b-sidebar>
-    <b-container style="margin-top: 100px;">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-white px-0">
-          <li class="breadcrumb-item">
-            <router-link to="/" class="text-muted">首頁</router-link>
-          </li>
-          <li class="breadcrumb-item">
-            全部商品
-          </li>
-        </ol>
-      </nav>
+    <b-container style="margin-top: 120px;">
       <b-button-group size="lg">
         <b-button
           variant="dark"
@@ -55,10 +45,13 @@
             </router-link>
             <b-row>
               <b-col cols="8" class="details">
-                <div>
-                  <strong>{{ item.title }}</strong>
-                </div>
-                <div>{{ item.price | thousands }}</div>
+                <router-link :to="`/product/${item.id}`"
+                  style="text-decoration: none; color: #3F5D5B;">
+                  <div>
+                    <strong>{{ item.title }}</strong>
+                  </div>
+                  <div>{{ item.price | thousands }}</div>
+                </router-link>
               </b-col>
               <b-col cols="4" class="buy pt-2 pl-0">
                 <b-button

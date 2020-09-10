@@ -11,11 +11,11 @@
           </router-link>
         </div>
       </div>
-      <div class="mt-3" v-else>
+      <b-container class="mt-3" v-else fluid>
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <step-progress :steps="mySteps" :current-step="currentStep"
-          icon-class="fa fa-check" active-color="#53B883"/>
+              icon-class="fa fa-check" active-color="#53B883" line-thickness="5"/>
           </div>
         </div>
         <div class="row mt-5">
@@ -42,14 +42,15 @@
                     </p>
                   </b-th>
                   <b-td class="border-0 align-middle" style="max-width: 160px;">
-                    <b-input-group class="my-3 mr-2 bg-light rounded">
+                    <b-input-group class="bg-light rounded">
                       <template v-slot:prepend>
                         <b-button
                           variant="outline-dark"
                           :disabled="item.quantity <= 1"
                           @click="updateQuantity(item.product.id, item.quantity - 1)"
+                          style="border: none; font-size: 20px;"
                         >
-                          <b-icon icon="dash-circle"></b-icon>
+                          <i class="fas fa-minus-circle"></i>
                         </b-button>
                       </template>
                       <b-form-input
@@ -62,8 +63,9 @@
                         <b-button
                           variant="outline-dark"
                           @click="updateQuantity(item.product.id, item.quantity + 1)"
+                          style="border: none; font-size: 20px;"
                         >
-                          <b-icon icon="plus-circle"></b-icon>
+                          <i class="fas fa-plus-circle"></i>
                         </b-button>
                       </template>
                     </b-input-group>
@@ -74,9 +76,10 @@
                     </p>
                   </td>
                   <td class="border-0 align-middle">
-                    <b-button variant="outline-dark"
-                      @click="removeCartItem(item.product.id)">
-                      <b-icon icon="x-circle"></b-icon>
+                    <b-button variant="danger"
+                      @click="removeCartItem(item.product.id)"
+                    >
+                      <i class="fas fa-trash-alt"></i>
                     </b-button>
                   </td>
                 </b-tr>
@@ -89,6 +92,10 @@
               <b-table-simple class="text-muted border-bottom">
                 <b-tbody>
                   <b-tr v-for="(item, i) in cart" :key="i">
+                    <b-th class="border-0 px-0 pt-4 font-weight-normal">
+                      {{ item.product.title }}
+                      <span class="pl-3">x</span>
+                    </b-th>
                     <b-th class="border-0 px-0 pt-4 font-weight-normal">
                       {{ item.quantity }} {{ item.product.unit }}
                     </b-th>
@@ -113,7 +120,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </b-container>
     </div>
     <Footer></Footer>
   </div>

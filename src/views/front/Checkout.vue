@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-md-10">
           <step-progress :steps="mySteps" :current-step="currentStep"
-          icon-class="fa fa-check" active-color="#53B883"/>
+          icon-class="fa fa-check" active-color="#53B883" line-thickness="5"/>
         </div>
       </div>
       <div class="row justify-content-center">
