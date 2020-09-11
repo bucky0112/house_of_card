@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <div class="container" style="margin-top: 100px;">
+    <b-container style="margin-top: 100px;">
       <div class="d-flex justify-content-center" v-if="!cart[0]">
         <div style="margin-top: 100px; margin-bottom: 200px">
           <h2 class="mb-5">您的購物車沒有商品唷，請回商品頁面選購吧～</h2>
@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <step-progress :steps="mySteps" :current-step="currentStep"
-              icon-class="fa fa-check" active-color="#53B883" line-thickness="5"/>
+              icon-class="fa fa-check" active-color="#53B883" :line-thickness="linethickness"/>
           </div>
         </div>
         <div class="row mt-5">
@@ -121,7 +121,7 @@
           </div>
         </div>
       </b-container>
-    </div>
+    </b-container>
     <Footer></Footer>
   </div>
 </template>
@@ -137,6 +137,7 @@ export default {
     return {
       mySteps: ['購物車', '填寫資料', '確認訂單'],
       currentStep: 0,
+      linethickness: 5,
       cartTotal: 0,
       cart: [],
     };

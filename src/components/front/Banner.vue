@@ -38,12 +38,13 @@
     position: relative;
     border-radius: 50%;
     color: white;
+    display: grid;
+    place-items: center;
   }
 
   .tagline h2{
     font-size: 40px;
     font-weight: bolder;
-    padding-top: 12vh;
     font-family: 'Montserrat Alternates', sans-serif;
   }
 

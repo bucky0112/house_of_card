@@ -25,7 +25,7 @@
                 @click="showCouponCode">
                 訂閱
               </button>
-              <span class="text-danger" style="padding-left: 8px;">{{ errors[0] }}</span>
+              <span class="text-danger pl-1 pt-2" v-if="errors[0]">{{ errors[0] }}</span>
             </div>
           </validation-provider>
         </div>

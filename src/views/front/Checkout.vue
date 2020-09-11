@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-md-10">
           <step-progress :steps="mySteps" :current-step="currentStep"
-          icon-class="fa fa-check" active-color="#53B883" line-thickness="5"/>
+          icon-class="fa fa-check" active-color="#53B883" :line-thickness="linethickness"/>
         </div>
       </div>
       <div class="row justify-content-center">
@@ -97,6 +97,7 @@ export default {
     return {
       mySteps: ['購物車', '填寫資料', '確認訂單'],
       currentStep: 2,
+      linethickness: 5,
       order: {
         coupon: null,
         amount: 0,

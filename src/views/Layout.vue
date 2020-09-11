@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <back-to-top>
+    <back-to-top bottom="140px">
       <button type="button" class="btn btn-info btn-to-top">
         <i class="fas fa-arrow-circle-up"></i>
       </button>
@@ -24,7 +24,7 @@ export default {
 .btn-to-top {
   width: 70px;
   height: 70px;
-  padding: 10px 16px;
+  padding: 20px 16px;
   border-radius: 50%;
   font-size: 30px;
   line-height: 22px;

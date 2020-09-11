@@ -4,15 +4,15 @@
       <b-row class="justify-content-center mb-5">
         <b-col cols="8">
           <step-progress :steps="mySteps" :current-step="currentStep"
-          icon-class="fa fa-check" active-color="#53B883" line-thickness="5"/>
+          icon-class="fa fa-check" active-color="#53B883" :line-thickness="linethickness"/>
         </b-col>
       </b-row>
       <b-row class="flex-row-reverse pb-5">
-        <b-col md="5" class="border p-4 mb-4">
+        <b-col md="5" class="border p-4 mb-4" style="height: 100%;">
           <b-table-simple responsive small borderless fixed hover>
             <b-tbody>
               <b-tr v-for="(item, i) in cart" :key="i">
-                <b-th>
+                <b-th class="pt-3">
                   <img
                     :src="item.product.imageUrl[0]"
                     :alt="item.product.title"
@@ -59,7 +59,7 @@
             <b-form @submit.prevent="createOrder">
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required">
-                  <label for="username">
+                  <label for="username" style="display: block; text-align: left;">
                     訂購人姓名
                     <b-badge pill variant="danger">必填</b-badge>
                   </label>
@@ -72,12 +72,15 @@
                     :class="classes"
                     placeholder="請輸入訂購人姓名"
                   />
-                  <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+                  <span v-if="errors[0]"
+                    class="text-danger"
+                    style="display: block; text-align: left;"
+                  >{{ errors[0] }}</span>
                 </validation-provider>
               </b-form-group>
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required">
-                  <label for="email">
+                  <label for="email" style="display: block; text-align: left;">
                     Email
                     <b-badge pill variant="danger">必填</b-badge>
                   </label>
@@ -90,12 +93,15 @@
                     :class="classes"
                     placeholder="請輸入 Email"
                   />
-                  <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+                  <span v-if="errors[0]"
+                    style="display: block; text-align: left;"
+                    class="text-danger"
+                  >{{ errors[0] }}</span>
                 </validation-provider>
               </b-form-group>
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required|min:8">
-                  <label for="tel">
+                  <label for="tel" style="display: block; text-align: left;">
                     電話
                     <b-badge pill variant="danger">必填</b-badge>
                   </label>
@@ -108,12 +114,15 @@
                     placeholder="請輸入電話"
                     :class="classes"
                   />
-                  <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+                  <span v-if="errors[0]"
+                    class="text-danger"
+                    style="display: block; text-align: left;"
+                  >{{ errors[0] }}</span>
                 </validation-provider>
               </b-form-group>
               <b-form-group>
                 <validation-provider v-slot="{ errors, classes }" rules="required">
-                  <label for="address">
+                  <label for="address" style="display: block; text-align: left;">
                     地址
                     <b-badge pill variant="danger">必填</b-badge>
                   </label>
@@ -126,11 +135,17 @@
                     :class="classes"
                     placeholder="請輸入地址"
                   />
-                  <span v-if="errors[0]" class="text-danger">{{ errors[0] }}</span>
+                  <span v-if="errors[0]"
+                    class="text-danger"
+                    style="display: block; text-align: left;"
+                  >{{ errors[0] }}</span>
                 </validation-provider>
               </b-form-group>
               <b-form-group>
-                <label for="select">付款方式<b-badge pill variant="danger">必選</b-badge></label>
+                <label for="select" style="display: block; text-align: left;">
+                  付款方式
+                  <b-badge pill variant="danger">必選</b-badge>
+                </label>
                 <select v-model="form.payment" class="form-control" id="select" required>
                   <option value disabled>請選擇付款方式</option>
                   <option value="WebATM">WebATM</option>
@@ -143,7 +158,7 @@
                 </select>
               </b-form-group>
               <b-form-group>
-                <label for="message">留言</label>
+                <label for="message" style="display: block; text-align: left;">留言</label>
                 <textarea
                   id="message"
                   v-model="form.message"
@@ -161,9 +176,11 @@
                   <i class="fas fa-chevron-left mr-2"></i> 回購物車
                 </router-link>
                 <div class="text-right">
-                  <button type="submit" class="btn btn-dark py-3 px-7" :disabled="invalid">
+                  <b-button type="submit" class="send_btn btn-dark py-3 px-7"
+                    :class="{ disabled: invalid }"
+                    :disabled="invalid">
                     送出訂單
-                  </button>
+                  </b-button>
                 </div>
               </div>
             </b-form>
@@ -186,6 +203,7 @@ export default {
     return {
       mySteps: ['購物車', '填寫資料', '確認訂單'],
       currentStep: 1,
+      linethickness: 5,
       form: {
         name: '',
         emial: '',
@@ -268,3 +286,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.send_btn {
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+</style>
