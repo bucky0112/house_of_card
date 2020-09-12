@@ -50,7 +50,8 @@
         </table>
       </div>
       <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
-      <ProductModal ref="productModal" :isNew="isNew" @update="getProducts"></ProductModal>
+      <ProductModal ref="productModal" :isNew="isNew" @update="getProducts">
+      </ProductModal>
       <DelProductModal
         :temp-product="tempProduct"
         @update="getProducts"></DelProductModal>
@@ -72,9 +73,10 @@ export default {
   },
   data() {
     return {
-      // 暫存資料，要先定義 imageUrl
+      // 暫存資料
       tempProduct: {
         imageUrl: [],
+        options: {},
       },
       // 放 AJAX 傳回的資料
       products: [],
@@ -113,12 +115,17 @@ export default {
         case 'new':
           this.$refs.productModal.tempProduct = {
             imageUrl: [],
+            options: {
+              game_player: '',
+              game_time: '',
+            },
           };
           this.isNew = true;
           this.$bvModal.show('productModal');
           break;
         case 'edit':
-          this.$refs.productModal.getProduct(item.id);
+          this.tempProduct = { ...item };
+          this.$refs.productModal.getProduct(this.tempProduct.id);
           this.isNew = false;
           break;
         case 'delete':

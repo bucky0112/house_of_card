@@ -13,16 +13,16 @@
     >
       <b-container fluid>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="form-group">
-                <label for="img">輸入圖片網址</label>
+          <b-row>
+            <b-col sm="4">
+              <div class="form-group" v-for=" i in 3" :key="i + 'img'">
+                <label :for="'img' + i">輸入圖片網址</label>
                 <input
                 type="text"
-                id="img"
+                :id="'img' + i"
                 class="form-control"
                 placeholder="請輸入圖片連結"
-                v-model="tempProduct.imageUrl[0]"
+                v-model="tempProduct.imageUrl[i - 1]"
                 />
               </div>
               <div class="form-group">
@@ -42,8 +42,8 @@
                   />
               </div>
               <img alt class="img-fluid" :src="tempProduct.imageUrl[0]"/>
-            </div>
-            <div class="col-sm-8">
+            </b-col>
+            <b-col sm="8">
               <div class="form-group">
                 <label for="title">標題</label>
                 <input
@@ -98,8 +98,28 @@
                     placeholder="請輸入售價"/>
                 </div>
               </div>
-              <hr />
 
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="game_player">建議遊玩人數</label>
+                  <input
+                    type="text"
+                    id="game_player"
+                    class="form-control"
+                    v-model="tempProduct.options.game_player"
+                    placeholder="請輸入遊玩人數" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="game_time">建議遊玩時間</label>
+                  <input
+                    type="text"
+                    id="game_time"
+                    class="form-control"
+                    v-model="tempProduct.options.game_time"
+                    placeholder="請輸入遊玩時間" />
+                </div>
+              </div>
+              <hr />
               <div class="form-group">
                 <label for="description">產品說明</label>
                 <textarea
@@ -114,14 +134,12 @@
 
               <div class="form-group">
                 <label for="content">產品描述</label>
-                <textarea
+                <vue-editor
                   id="content"
-                  class="form-control"
-                  type="text"
                   placeholder="請輸入產品描述"
                   v-model="tempProduct.content"
                   required
-                ></textarea>
+                />
               </div>
 
               <div class="form-group">
@@ -134,8 +152,8 @@
                   <label for="enabled" class="form-check-label">是否啟用</label>
                 </div>
               </div>
-            </div>
-          </div>
+            </b-col>
+          </b-row>
         </div>
       </b-container>
       <template v-slot:modal-footer>
@@ -156,13 +174,18 @@
 
 <script>
 import Toast from '@/plugins/Toast';
+import { VueEditor } from 'vue2-editor/dist/vue2-editor.core';
 
 export default {
+  components: {
+    VueEditor,
+  },
   data() {
     return {
       // 暫存資料，要先定義 imageUrl
       tempProduct: {
         imageUrl: [],
+        options: {},
       },
       // 上傳圖片的 icon
       status: {
@@ -170,12 +193,6 @@ export default {
       },
       show: false,
       variants: [
-        'primary',
-        'secondary',
-        'success',
-        'warning',
-        'danger',
-        'info',
         'light',
         'dark',
       ],
@@ -197,9 +214,14 @@ export default {
       this.axios
         .get(api)
         .then((res) => {
-          this.$bvModal.show('productModal');
           this.tempProduct = res.data.data;
           loader.hide();
+          this.$bvModal.show('productModal');
+          if (!this.tempProduct.options) {
+            this.tempProduct.options = {};
+          } else {
+            this.options = this.tempProduct.options;
+          }
         })
         .catch(() => {
           Toast.fire({
@@ -271,3 +293,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~vue2-editor/dist/vue2-editor.css";
+
+/* Import the Quill styles you want */
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+</style>
