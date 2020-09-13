@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div class="banner">
-      <b-container style="padding-top: 40vh">
-        <b-container class="tagline">
-          <h2>Fun Times</h2>
-          <p>聚集一桌，歡樂悠遊</p>
-        </b-container>
+    <div class="banner" :style="{ backgroundImage: `url(${banner.backgroundImage})` }">
+      <b-container style="padding-top: 40vh;">
+        <div class="d-flex flex-column align-items-start">
+          <h2 style="font-size: 55px; color: white;" v-for="(title, i) in banner.title" :key="i">
+            {{ banner.title[i] }}
+          </h2>
+        </div>
         <a href="#"
-          class="down"
+          class="down d-flex flex-column align-items-start"
           style="text-decoration: none;"
           v-scroll-to="{
             el: '#target',
@@ -22,32 +23,17 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;1,900&display=swap');
+<script>
+export default {
+  props: ['banner'],
+};
+</script>
 
+<style lang="scss" scoped>
 .banner {
   height: 98vh;
   background-position: center center;
-  // background-image: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/nGhQlphde5dp9XzxREbq1kqIy7x4v8I4vuqFwHoqnrK9nUsIoS6KtEmaHmZr21BilEPryA1VpC17jHYhk0nqbXcxbqyQVdw02pv5sHJyMIzjGd4cOsa9E5qlpnQ8yfJq.jpg);
-  background-image: url(https://images.unsplash.com/photo-1549056572-75914d5d5fd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80);
   opacity: 0.8;
-
-  .tagline{
-    background: rgba(0, 0, 0, 0.3);
-    height: 250px;
-    width: 250px;
-    position: relative;
-    border-radius: 50%;
-    color: white;
-    display: grid;
-    place-items: center;
-  }
-
-  .tagline h2{
-    font-size: 40px;
-    font-weight: bolder;
-    font-family: 'Montserrat Alternates', sans-serif;
-  }
 
   .down i {
     opacity: 0;

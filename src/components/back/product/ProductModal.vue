@@ -101,22 +101,43 @@
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="game_player">建議遊玩人數</label>
+                  <label for="game_player">建議遊戲人數</label>
                   <input
                     type="text"
                     id="game_player"
                     class="form-control"
                     v-model="tempProduct.options.game_player"
-                    placeholder="請輸入遊玩人數" />
+                    placeholder="請輸入遊戲人數" />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="game_time">建議遊玩時間</label>
+                  <label for="game_time">建議遊戲時間</label>
                   <input
                     type="text"
                     id="game_time"
                     class="form-control"
                     v-model="tempProduct.options.game_time"
-                    placeholder="請輸入遊玩時間" />
+                    placeholder="請輸入遊戲時間" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="player_age">建議遊戲年齡</label>
+                  <input
+                    type="text"
+                    id="player_age"
+                    class="form-control"
+                    v-model="tempProduct.options.player_age"
+                    placeholder="請輸入遊戲年齡" />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="game_rating">BGG 評分</label>
+                  <input
+                    type="text"
+                    id="game_rating"
+                    class="form-control"
+                    v-model="tempProduct.options.game_rating"
+                    placeholder="請輸入 BGG 評分" />
                 </div>
               </div>
               <hr />

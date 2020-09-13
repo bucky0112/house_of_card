@@ -1,5 +1,7 @@
 <template>
   <div class="about">
+    <Banner :banner="banner"></Banner>
+    <div id="target" style="height: 100px"></div>
     <b-container class="title" fluid>
       <h2>關於 House of Card</h2>
       <h4>服務項目與未來走向</h4>
@@ -30,11 +32,21 @@
 </template>
 
 <script>
+import Banner from '@/components/front/Banner.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
   components: {
+    Banner,
     Footer,
+  },
+  data() {
+    return {
+      banner: {
+        title: ['關於我們的故事，', '還有提供給各位的服務！'],
+        backgroundImage: 'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80',
+      },
+    };
   },
 };
 </script>

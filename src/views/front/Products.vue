@@ -1,23 +1,8 @@
 <template>
   <div class="products">
-    <!-- 遊戲分類選擇 -->
-    <b-sidebar
-      id="sidebar-backdrop"
-      backdrop-variant="light"
-      backdrop
-      title="請選擇分類"
-      shadow
-    >
-      <b-button-group vertical class="category_btn">
-        <b-button
-          variant="dark"
-          v-for="(item, i) in categories" :key="i"
-          @click.prevent="chooseCategory = item"
-          :class="{ active: item === chooseCategory }"
-        >{{ item }}</b-button>
-      </b-button-group>
-    </b-sidebar>
-    <b-container style="margin-top: 120px;">
+    <Banner :banner="banner"></Banner>
+    <div id="target" style="height: 100px"></div>
+    <b-container>
       <b-button-group size="lg">
         <b-button
           variant="dark"
@@ -26,8 +11,20 @@
         >
           全部遊戲
         </b-button>
-        <!-- 打開旁邊的 sidebar 選擇遊戲分類 -->
-        <b-button v-b-toggle.sidebar-backdrop>遊戲分類</b-button>
+        <b-dropdown size="lg">
+          <template v-slot:button-content>
+            遊戲分類
+          </template>
+          <b-dropdown-item href="#"
+            v-for="(item, i) in categories" :key="i"
+            @click.prevent="chooseCategory = item"
+            :class="{ active: item === chooseCategory }"
+            class="game_category"
+            style="padding: 10px 0px; background-color: #48BD81;"
+          >
+            {{ item }}
+          </b-dropdown-item>
+        </b-dropdown>
       </b-button-group>
       <div class="row mt-5">
         <div class="col-12 col-md-6 col-lg-3"
@@ -36,7 +33,7 @@
             <router-link :to="`/product/${item.id}`">
               <div
                 class="img"
-                :style="{ backgroundImage: `url(${ item.imageUrl[0] })` }"
+                :style="{ backgroundImage: `url(${item.imageUrl[0]})` }"
               >
                 <b-badge variant="info" class="float-right mt-2 mr-2">
                   {{ item.category }}
@@ -46,7 +43,8 @@
             <b-row>
               <b-col cols="8" class="details">
                 <router-link :to="`/product/${item.id}`"
-                  style="text-decoration: none; color: #3F5D5B;">
+                  style="text-decoration: none; color: #3F5D5B;"
+                >
                   <div>
                     <strong>{{ item.title }}</strong>
                   </div>
@@ -78,16 +76,22 @@
 </template>
 
 <script>
+import Banner from '@/components/front/Banner.vue';
 import Pagination from '@/components/Pagination.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
   components: {
+    Banner,
     Pagination,
     Footer,
   },
   data() {
     return {
+      banner: {
+        title: ['英雄集結，', '還有更多挑戰等著你來！'],
+        backgroundImage: 'https://images.unsplash.com/photo-1549056630-ee2626bb5ad5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80',
+      },
       products: [],
       categories: ['家庭遊戲', '派對遊戲', '策略遊戲', '主題遊戲', '戰爭遊戲', '兒童遊戲', '抽象遊戲', '客製遊戲'],
       chooseCategory: '',

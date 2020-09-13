@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <div class="container" style="margin-top: 100px">
+    <b-container style="margin-top: 100px">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white px-0">
           <li class="breadcrumb-item">
@@ -12,17 +12,55 @@
           <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
         </ol>
       </nav>
-      <div class="row align-items-center">
-        <div class="col-md-7">
-          <b-img height="400" :src="product.imageUrl[0]" :alt="product.title"></b-img>
-        </div>
-        <div class="col-md-5">
+      <b-row class="align-items-center">
+        <b-col md="6">
+          <b-img height="400" fluid :src="product.imageUrl[0]" :alt="product.title"/>
+        </b-col>
+        <b-col md="6">
           <h2 class="font-weight-bold h1 mb-5 text-left">{{ product.title }}</h2>
+          <b-container class="mb-4" fluid>
+            <b-row class="py-2 rounded" style="border: thick double;">
+              <b-col
+                v-b-popover.hover.top="`${product.options.game_rating} / 10`"
+                title="BGG 評分"
+              >
+                <i class="fas fa-star pr-1" style="font-size: 1.5rem;"></i>
+                <!-- 評分 -->
+                {{ product.options.game_rating }}
+              </b-col>
+              <b-col
+                v-b-popover.hover.top="`${product.options.game_player} 名玩家`"
+                title="支援遊戲人數"
+              >
+                <i class="fas fa-user-friends pr-1" style="font-size: 1.5rem;"></i>
+                <!-- 人數 -->
+                {{ product.options.game_player }} 人
+              </b-col>
+              <b-col
+                v-b-popover.hover.top="`約 ${product.options.game_time} 分鐘`"
+                title="遊戲時間"
+              >
+                <i class="fas fa-clock pr-1" style="font-size: 1.5rem;"></i>
+                <!-- 時間 -->
+                {{ product.options.game_time }} 分鐘
+              </b-col>
+              <b-col
+                v-b-popover.hover.top="`${product.options.player_age}`"
+                title="建議遊戲年齡"
+              >
+                <i class="fas fa-child pr-1" style="font-size: 1.5rem;"></i>
+                <!-- 年齡 -->
+                {{ product.options.player_age }}
+              </b-col>
+            </b-row>
+          </b-container>
           <div v-if="product.origin_price">
             <p class="mb-0 text-muted text-right">
-            <del>{{ product.origin_price | thousands }}</del>
+            <del style="color: red;">原價 {{ product.origin_price | thousands }}</del>
             </p>
-            <p class="h4 font-weight-bold text-right">售價： {{ product.price | thousands }}</p>
+            <p class="h4 font-weight-bold text-right">
+              特價： {{ product.price | thousands }}
+            </p>
           </div>
           <div v-else>
             <p class="h4 font-weight-bold text-right">售價： {{ product.price | thousands }}</p>
@@ -62,28 +100,51 @@
               加入購物車
             </a>
           </div>
-        </div>
-      </div>
+        </b-col>
+      </b-row>
       <b-row>
         <b-col class="mt-3" md="6">
           <p class="typing typing-item">
             {{ product.description }}
-          </p></b-col>
-        <b-col md="6" class="text-left" style="line-height: 2em;">
-          <p>{{ product.content }}</p>
+          </p>
+          <b-container fluid>
+            <b-row>
+              <b-col @click="showFirst" style="cursor: pointer;">
+                <b-img thumbnail fluid :src="product.imageUrl[1]" style="height: 100px"/>
+              </b-col>
+              <b-col @click="showSecond" style="cursor: pointer;">
+                <b-img thumbnail fluid :src="product.imageUrl[2]" style="height: 100px"/>
+              </b-col>
+            </b-row>
+          </b-container>
+          <vue-easy-lightbox
+            escDisabled
+            moveDisabled
+            :visible="visible"
+            :imgs="imgs"
+            @hide="handleHide"
+          ></vue-easy-lightbox>
+        </b-col>
+        <b-col md="6"
+          class="text-left mt-3"
+          v-html="product.content"
+          style="line-height: 2em;"
+        >
         </b-col>
       </b-row>
-    </div>
-    <Footer></Footer>
+    </b-container>
+    <Footer class="mt-3"></Footer>
   </div>
 </template>
 
 <script>
 import Footer from '@/components/front/Footer.vue';
+import VueEasyLightbox from 'vue-easy-lightbox';
 
 export default {
   components: {
     Footer,
+    VueEasyLightbox,
   },
   data() {
     return {
@@ -92,8 +153,16 @@ export default {
         imageUrl: [],
         origin_price: 0,
         price: 0,
+        options: {
+          game_rating: '',
+          game_player: '',
+          game_time: '',
+          player_age: '',
+        },
       },
       cartNum: 1,
+      imgs: '',
+      visible: false,
     };
   },
   created() {
@@ -133,6 +202,20 @@ export default {
           loader.hide();
           this.$toast.error(`${err.response.data.errors}`);
         });
+    },
+    showFirst() {
+      this.imgs = `${this.product.imageUrl[1]}`;
+      this.show();
+    },
+    showSecond() {
+      this.imgs = `${this.product.imageUrl[2]}`;
+      this.show();
+    },
+    show() {
+      this.visible = true;
+    },
+    handleHide() {
+      this.visible = false;
     },
   },
 };

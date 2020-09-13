@@ -1,6 +1,8 @@
 <template>
   <div>
-    <b-container style="margin-top: 120px;">
+    <Banner :banner="banner"></Banner>
+    <div id="target" style="height: 100px"></div>
+    <b-container>
       <div class="about_game"><h2>什麼是桌遊？</h2></div>
       <p class="mt-3 text-center">桌遊種類成千上萬，但我們可以依照全球知名網站
         <a href="#" @click="linkToBGG">
@@ -156,14 +158,21 @@
 </template>
 
 <script>
+import Banner from '@/components/front/Banner.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
   components: {
+    Banner,
     Footer,
   },
   data() {
-    return {};
+    return {
+      banner: {
+        title: ['在這裡，', '將帶你認識琳瑯滿目、包羅萬象的世界！'],
+        backgroundImage: 'https://images.unsplash.com/photo-1457694716743-eb419114c894?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+      },
+    };
   },
   methods: {
     linkToBGG() {

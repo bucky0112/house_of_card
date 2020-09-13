@@ -1,9 +1,9 @@
 <template>
   <div class="index">
-    <Banner></Banner>
+    <Banner :banner="banner"></Banner>
     <div id="target" style="height: 100px"></div>
     <b-container>
-      <h2 class="mb-3">本月家庭遊戲主打</h2>
+      <h2 class="mb-3">本月遊戲主打</h2>
       <Carousel></Carousel>
     </b-container>
     <b-container class="my-7 mt-5">
@@ -90,6 +90,14 @@ export default {
     Banner,
     Carousel,
     Footer,
+  },
+  data() {
+    return {
+      banner: {
+        title: ['你，準備好打王了嗎？', '快來跟我們一起組隊！'],
+        backgroundImage: 'https://images.unsplash.com/photo-1549056572-75914d5d5fd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80',
+      },
+    };
   },
 };
 </script>

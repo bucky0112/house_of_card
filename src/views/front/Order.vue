@@ -279,6 +279,7 @@ export default {
           this.$toast.success('成功幫您使用折扣囉～');
         })
         .catch(() => {
+          this.couponCode = '';
           loader.hide();
           this.$toast.error('請輸入正確的優惠碼。');
         });

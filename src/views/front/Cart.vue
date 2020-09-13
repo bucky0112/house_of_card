@@ -76,7 +76,7 @@
                     </p>
                   </td>
                   <td class="border-0 align-middle">
-                    <b-button variant="danger"
+                    <b-button variant="dark"
                       @click="removeCartItem(item.product.id)"
                     >
                       <i class="fas fa-trash-alt"></i>
