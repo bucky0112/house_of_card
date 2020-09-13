@@ -11,7 +11,7 @@
         >
           全部遊戲
         </b-button>
-        <b-dropdown size="lg">
+        <b-dropdown size="lg" dropright>
           <template v-slot:button-content>
             遊戲分類
           </template>
