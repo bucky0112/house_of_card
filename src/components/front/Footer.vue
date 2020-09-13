@@ -38,7 +38,6 @@
             <a class="footer-logo" href="#">House of Card</a>
           </router-link>
           <p class="mb-0">© 2020 House of Card All Rights Reserved.</p>
-          <p class="mb-0">所有圖片為練習使用，無商業用途。</p>
           <ul class="d-flex list-unstyled mb-0 h4">
             <li>
               <a href="#" class="text-white mx-3" @click="linkToFaceBook">
@@ -62,6 +61,7 @@
             </li>
           </ul>
         </div>
+        <p class="mb-0" style="color: white;">所有圖片為練習使用，無商業用途。</p>
       </div>
     </div>
   </div>

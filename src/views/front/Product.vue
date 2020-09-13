@@ -19,9 +19,11 @@
         <b-col md="6">
           <h2 class="font-weight-bold h1 mb-5 text-left">{{ product.title }}</h2>
           <b-container class="mb-4" fluid>
-            <b-row class="py-2 rounded" style="border: thick double;">
+            <b-row class="text-left mb-5">
+              <!-- hover 時顯示資訊 -->
               <b-col
                 v-b-popover.hover.top="`${product.options.game_rating} / 10`"
+                id="click_game_rating"
                 title="BGG 評分"
               >
                 <i class="fas fa-star pr-1" style="font-size: 1.5rem;"></i>
@@ -30,14 +32,25 @@
               </b-col>
               <b-col
                 v-b-popover.hover.top="`${product.options.game_player} 名玩家`"
+                id="click_game_player"
                 title="支援遊戲人數"
               >
                 <i class="fas fa-user-friends pr-1" style="font-size: 1.5rem;"></i>
                 <!-- 人數 -->
                 {{ product.options.game_player }} 人
               </b-col>
+              <!-- 點擊時顯示資訊 -->
+              <b-popover target="click_game_rating" title="BGG 評分">
+                {{ product.options.game_rating }} / 10
+              </b-popover>
+              <b-popover target="click_game_player" title="支援遊戲人數">
+                {{ product.options.game_player }} 名玩家
+              </b-popover>
+            </b-row>
+            <b-row class="text-left">
               <b-col
                 v-b-popover.hover.top="`約 ${product.options.game_time} 分鐘`"
+                id="click_game_time"
                 title="遊戲時間"
               >
                 <i class="fas fa-clock pr-1" style="font-size: 1.5rem;"></i>
@@ -46,12 +59,19 @@
               </b-col>
               <b-col
                 v-b-popover.hover.top="`${product.options.player_age}`"
+                id="click_player_age"
                 title="建議遊戲年齡"
               >
                 <i class="fas fa-child pr-1" style="font-size: 1.5rem;"></i>
                 <!-- 年齡 -->
                 {{ product.options.player_age }}
               </b-col>
+              <b-popover target="click_game_time" title="遊戲時間">
+                約 {{ product.options.game_time }} 分鐘
+              </b-popover>
+              <b-popover target="click_player_age" title="建議遊戲年齡">
+                {{ product.options.player_age }}
+              </b-popover>
             </b-row>
           </b-container>
           <div v-if="product.origin_price">
@@ -104,7 +124,7 @@
       </b-row>
       <b-row>
         <b-col class="mt-3" md="6">
-          <p class="typing typing-item">
+          <p data-aos="fade-up" data-aos-duration="3000">
             {{ product.description }}
           </p>
           <b-container fluid>
@@ -220,27 +240,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.typing{
-font-size: 1rem;
-padding-top: 6%;
-margin-bottom: 5%;
-font-weight: normal;
-letter-spacing: .3rem;
--webkit-animation: type 2s steps(50, end) forwards;
-animation: type 4s steps(50, end) forwards;
-}
-.typing-item{
-text-align: center;
-width:100%;
-white-space:nowrap;
-overflow:hidden;
-}
-@-webkit-keyframes type{
-from { width: 0;}
-}
-@keyframes type{
-from { width: 0;}
-}
-</style>

@@ -32,7 +32,7 @@ export default {
     return {
       swiperOption: {
         slidesPerView: 5,
-        spaceBetween: 50,
+        spaceBetween: 60,
         loop: true,
         pagination: {
           el: '.swiper-pagination',
@@ -45,19 +45,19 @@ export default {
         breakpoints: {
           1024: {
             slidesPerView: 4,
-            spaceBetween: 40,
+            spaceBetween: 50,
           },
           768: {
-            slidesPerView: 3,
-            spaceBetween: 30,
+            slidesPerView: 2,
+            spaceBetween: 40,
           },
           640: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 30,
           },
           320: {
-            slidesPerView: 1,
-            spaceBetween: 10,
+            slidesPerView: 2,
+            spaceBetween: 20,
           },
         },
       },
