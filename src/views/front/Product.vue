@@ -190,21 +190,27 @@ export default {
     addToCart() {
       const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
-      const cart = {
-        product: this.product.id,
-        quantity: this.cartNum,
-      };
-      this.axios
-        .post(url, cart)
-        .then(() => {
-          this.$bus.$emit('updateCart');
-          loader.hide();
-          this.$toast.success('已加入購物車～');
-        })
-        .catch((err) => {
-          loader.hide();
-          this.$toast.error(`${err.response.data.errors}`);
-        });
+      if (this.cartNum <= 0) {
+        loader.hide();
+        this.$toast.error('請輸入正確數字。');
+        this.cartNum = 1;
+      } else {
+        const cart = {
+          product: this.product.id,
+          quantity: this.cartNum,
+        };
+        this.axios
+          .post(url, cart)
+          .then(() => {
+            this.$bus.$emit('updateCart');
+            loader.hide();
+            this.$toast.success('已加入購物車～');
+          })
+          .catch((err) => {
+            loader.hide();
+            this.$toast.error(`${err.response.data.errors}`);
+          });
+      }
     },
     showFirst() {
       this.imgs = `${this.product.imageUrl[1]}`;

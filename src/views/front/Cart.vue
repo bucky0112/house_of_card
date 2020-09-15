@@ -58,6 +58,7 @@
                         class="form-control border-0 text-center my-auto shadow-none bg-light"
                         min="1"
                         v-model="item.quantity"
+                        disabled
                       />
                       <template v-slot:append>
                         <b-button
