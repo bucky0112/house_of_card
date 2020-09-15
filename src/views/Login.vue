@@ -3,7 +3,7 @@
     <b-container class="auth">
       <div class="auth__header">
         <div class="auth__logo">
-          <img height="90" src="@/assets/logo.png" alt="Vue logo" />
+          <img height="90" src="@/assets/image/logo.png" alt="Vue logo" />
         </div>
       </div>
       <div class="auth__body">

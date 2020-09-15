@@ -97,7 +97,7 @@ export default {
 
 <style lang="scss" scoped>
 .footer-logo {
-  background-image: url("~@/assets/hoc_logo.png");
+  background-image: url("~@/assets/image/hoc_logo.png");
   display: inline-block;
   background-size: 100px 100px;
   width: 100px;

@@ -45,7 +45,7 @@ export default {
 
 <style scoped lang="scss">
 .brand-link h1{
-  background-image: url("~@/assets/slide_logo.png");
+  background-image: url("~@/assets/image/slide_logo.png");
   display: inline-block;
   background-size: 90px 44px;
   width: 90px;
