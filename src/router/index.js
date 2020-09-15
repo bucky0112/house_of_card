@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Layout',
+    // name: 'Layout',
     component: () => import('../views/Layout.vue'),
     children: [
       {
@@ -16,7 +16,7 @@ const routes = [
       },
       {
         path: 'products',
-        name: 'Products',
+        name: 'FrontProducts',
         component: () => import('../views/front/Products.vue'),
       },
       {
@@ -41,7 +41,7 @@ const routes = [
       },
       {
         path: 'order',
-        name: 'Order',
+        name: 'FrontOrder',
         component: () => import('../views/front/Order.vue'),
       },
       {
