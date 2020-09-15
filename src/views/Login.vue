@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container auth">
+    <b-container class="auth">
       <div class="auth__header">
         <div class="auth__logo">
           <img height="90" src="@/assets/logo.png" alt="Vue logo" />
@@ -52,7 +52,7 @@
           </div>
         </b-form>
       </div>
-    </div>
+    </b-container>
   </div>
 </template>
 

@@ -1,17 +1,12 @@
 <template>
   <div>
-    <div class="container" style="margin-top: 100px;">
-      <div class="row justify-content-center">
-        <div class="col-md-10">
+    <b-container style="margin-top: 100px;">
+      <b-row class="justify-content-center mb-3">
+        <b-col md="10">
           <step-progress :steps="mySteps" :current-step="currentStep"
           icon-class="fa fa-check" active-color="#53B883" :line-thickness="linethickness"/>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-10">
-          <h3 class="font-weight-bold mb-4 pt-3">確認訂單</h3>
-        </div>
-      </div>
+        </b-col>
+      </b-row>
       <div class="justify-content-center pb-5">
         <div class="border p-4 mb-4">
           <b-table-simple responsive fixed hover>
@@ -81,7 +76,7 @@
           <b-button variant="dark" @click="payingOrder">確認付款</b-button>
         </div>
       </div>
-    </div>
+    </b-container>
     <Footer></Footer>
   </div>
 </template>
