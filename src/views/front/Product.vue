@@ -112,10 +112,10 @@
           </p>
           <b-container fluid>
             <b-row>
-              <b-col @click="showFirst" style="cursor: pointer;">
+              <b-col class="text-left" @click="showFirst" style="cursor: pointer;">
                 <b-img thumbnail fluid :src="product.imageUrl[1]" style="height: 100px"/>
               </b-col>
-              <b-col @click="showSecond" style="cursor: pointer;">
+              <b-col class="text-left" @click="showSecond" style="cursor: pointer;">
                 <b-img thumbnail fluid :src="product.imageUrl[2]" style="height: 100px"/>
               </b-col>
             </b-row>

@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="bg-light py-4">
-      <div class="container">
+      <b-container>
         <div
           class="d-flex flex-column flex-md-row justify-content-between
           align-items-md-center align-items-start"
@@ -10,6 +10,7 @@
           <validation-provider
             v-slot="{ errors, classes }"
             class="input-group w-md-50 mt-md-0 mt-0"
+            style="border-radius: 5px"
             rules="email"
           >
             <input
@@ -17,11 +18,11 @@
               type="email"
               v-model="email"
               :class="classes"
-              class="form-control rounded-0"
+              class="form-control"
               placeholder="請輸入 Email"
             />
             <div class="input-group-append">
-              <button class="btn btn-dark rounded-0" type="button" id="search"
+              <button class="btn btn-dark" type="button" id="search"
                 @click="showCouponCode">
                 訂閱
               </button>
@@ -29,7 +30,7 @@
             </div>
           </validation-provider>
         </div>
-      </div>
+      </b-container>
     </div>
     <div class="bg-dark py-5">
       <div class="container">

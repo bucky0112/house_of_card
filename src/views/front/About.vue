@@ -1,8 +1,7 @@
 <template>
   <div class="about">
     <Banner :banner="banner"></Banner>
-    <div id="target" style="height: 100px"></div>
-    <b-container class="title" fluid>
+    <b-container id="target" class="title" fluid>
       <h2>關於 House of Card</h2>
       <h4>服務項目與未來走向</h4>
     </b-container>
