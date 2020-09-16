@@ -47,7 +47,7 @@
 ### 前台
 
 首頁 banner：當點擊往下看更多內容，就會往下滾動到下方遊戲主打區。
-![首頁 banner](https://i.imgur.com/tg5ZJ7T.jpg)
+![首頁 banner](https://i.imgur.com/hv8HPDV.jpg)
 
 遊戲主打區，使用輪播效果展示部份主打商品，點擊該商品便可轉到該商品詳細頁面。
 ![遊戲主打區](https://i.imgur.com/gdgGXZL.png)
