@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products" style="background-color: #F8F9FA;">
     <Banner :banner="banner"></Banner>
     <div id="target" style="height: 100px"></div>
     <b-container>

@@ -3,12 +3,12 @@
     <div class="banner" :style="{ backgroundImage: `url(${banner.backgroundImage})` }">
       <b-container style="padding-top: 40vh;">
         <div class="d-flex flex-column align-items-start">
-          <h2 style="font-size: 55px; color: white;" v-for="(title, i) in banner.title" :key="i">
+          <h2 style="font-size: 53px; color: white;" v-for="(title, i) in banner.title" :key="i">
             {{ banner.title[i] }}
           </h2>
         </div>
         <a href="#"
-          class="down d-flex flex-column align-items-start"
+          class="down d-flex flex-column align-items-center"
           style="text-decoration: none;"
           v-scroll-to="{
             el: '#target',
@@ -37,7 +37,6 @@ export default {
 
   .down i {
     opacity: 0;
-    color: darkred;
     animation: iconAnimation 1.5s infinite;
   }
 

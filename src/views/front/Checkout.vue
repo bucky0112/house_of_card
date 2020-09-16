@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="checkout" style="background-color: #F8F9FA;">
     <b-container style="margin-top: 100px;">
       <b-row class="justify-content-center mb-3">
         <b-col md="10">

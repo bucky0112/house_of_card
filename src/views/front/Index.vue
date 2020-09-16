@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index" style="background-color: #F8F9FA;">
     <Banner :banner="banner"></Banner>
     <div id="target" style="height: 100px"></div>
     <b-container>

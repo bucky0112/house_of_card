@@ -39,7 +39,7 @@ export default {
           dynamicBullets: true,
         },
         autoplay: {
-          delay: 5000,
+          delay: 4000,
         },
         breakpoints: {
           1024: {
@@ -47,16 +47,16 @@ export default {
             spaceBetween: 50,
           },
           768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
+            slidesPerView: 3,
+            spaceBetween: 30,
           },
           640: {
             slidesPerView: 2,
-            spaceBetween: 30,
+            spaceBetween: 20,
           },
           320: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 0,
           },
         },
       },

@@ -1,5 +1,5 @@
 <template>
-  <div class="cart">
+  <div class="cart" style="background-color: #F8F9FA;">
     <b-container style="margin-top: 100px;">
       <div class="d-flex justify-content-center" v-if="!cart[0]">
         <div style="margin-top: 100px; margin-bottom: 200px">

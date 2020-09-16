@@ -1,5 +1,5 @@
 <template>
-  <div class="order pt-4">
+  <div class="order pt-4" style="background-color: #F8F9FA;">
     <b-container style="margin-top: 100px;">
       <b-row class="justify-content-center mb-5">
         <b-col cols="8">

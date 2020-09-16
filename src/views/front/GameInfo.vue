@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gameInfo" style="background-color: #F8F9FA;">
     <Banner :banner="banner"></Banner>
     <div id="target" style="height: 100px"></div>
     <b-container>
