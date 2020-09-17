@@ -83,5 +83,9 @@ export default {
 .cart_num {
   float: right;
   margin-top: -10px;
+  @media screen and (max-width: 990px) {
+    float: none;
+    margin-top: 0;
+  }
 }
 </style>

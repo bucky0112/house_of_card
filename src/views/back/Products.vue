@@ -115,10 +115,7 @@ export default {
         case 'new':
           this.$refs.productModal.tempProduct = {
             imageUrl: [],
-            options: {
-              game_player: '',
-              game_time: '',
-            },
+            options: {},
           };
           this.isNew = true;
           this.$bvModal.show('productModal');
