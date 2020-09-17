@@ -42,9 +42,7 @@
 * [Vue-backtotop](https://github.com/caiofsouza/vue-backtotop)
 * [Vue-step-progress](https://github.com/bastidest/vue-step-progress)
 
-## 網站功能介紹
-
-### 前台
+## 網站功能介紹 - 前台
 
 首頁 banner：當點擊往下看更多內容，就會往下滾動到下方遊戲主打區。
 ![首頁 banner](https://i.imgur.com/hv8HPDV.jpg)
@@ -52,7 +50,7 @@
 遊戲主打區，使用輪播效果展示部份主打商品，點擊該商品便可轉到該商品詳細頁面。
 ![遊戲主打區](https://i.imgur.com/gdgGXZL.png)
 
-#### 商品一覽
+### 商品一覽
 
 展示全部商品。
 ![顯示全部商品頁面](https://i.imgur.com/jh2jPb1.png)
@@ -63,20 +61,20 @@
 商品分類顯示功能。
 ![分類顯示功能](https://i.imgur.com/o4utyyQ.png)
 
-#### 單一商品頁面
+### 單一商品頁面
 
 單一商品詳細頁面。
 ![單一商品詳細頁面](https://i.imgur.com/BUWVzFb.png)
 個別功能介紹。
 ![商品詳細頁面個別功能介紹](https://i.imgur.com/9mJ8AiS.png)
 
-#### 進入購物車流程
+### 進入購物車流程
 
-##### 顯示購物車商品數量及價格資訊
+1. 顯示購物車商品數量及價格資訊
 
 ![購物車](https://i.imgur.com/TiqVvWr.png)
 
-##### 填寫資料頁面
+2. 填寫資料頁面
 
 * 必填欄位如未填寫經過驗證會提醒使用者
 ![填寫資料](https://i.imgur.com/gjHW2aX.png)
@@ -84,20 +82,20 @@
 * 優惠碼的使用
 ![優惠碼的使用](https://i.imgur.com/DL43xOH.png)
 
-##### 確認訂單
+3. 確認訂單
 
 顯示訂購的商品數量及金額，如果有折扣則會顯示折扣後價格。
 ![20200916225211](https://i.imgur.com/Kxh5Ohw.png)
 ![20200916225248](https://i.imgur.com/7DPAMLX.png)
 
-### 後台介紹
+## 網站功能介紹 - 後台
 
-##### 使用者登入頁面
+### 使用者登入頁面
 
 需要輸入正確帳號密碼，才能進入後台頁面。
 ![20200916230222](https://i.imgur.com/nhcvZcL.png)
 
-##### 產品列表頁面
+### 產品列表頁面
 
 進入後台，預設進入管理產品列表，在這裡可以新增商品，及編輯或刪除原有商品。
 ![20200916230652](https://i.imgur.com/zh2fw9u.png)
@@ -111,19 +109,19 @@
 刪除商品
 ![20200916231337](https://i.imgur.com/DECngZB.png)
 
-##### 優惠券列表頁面
+### 優惠券列表頁面
 
 可以新增優惠券，及編輯或刪除原有優惠券。
 ![20200916231601](https://i.imgur.com/D6OsL9t.png)
 ![20200916231644](https://i.imgur.com/5KuBC95.png)
 
-##### 訂單列表頁面
+### 訂單列表頁面
 
 可以編輯訂單付款狀態，及觀看該訂單客戶資料。
 ![20200916231828](https://i.imgur.com/uyOowKZ.png)
 ![20200916231935](https://i.imgur.com/sqzgbQ0.png)
 
-##### 圖片儲存列表頁面
+### 圖片儲存列表頁面
 
 顯示經由新增商品上傳圖片，並且可以刪除圖片。
 ![20200916232157](https://i.imgur.com/J8Zejcm.png)
