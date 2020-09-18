@@ -22,7 +22,7 @@
 
 ## 使用技術
 
-* Vue CLI 3
+* Vue CLI 4
 * Vue Router
 * Vue Components
 * RESTful APIs
