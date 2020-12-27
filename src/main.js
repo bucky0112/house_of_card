@@ -26,6 +26,11 @@ import './assets/scss/all.scss';
 import './assets/scss/main.scss';
 import thousandsFilter from './filters/thousands';
 
+// eslint-disable-next-line no-unused-vars
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0); // 切换路由之后滚动条始终在最顶部
+});
+
 Vue.config.productionTip = false;
 // Toast 設定
 const options = {
