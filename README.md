@@ -22,8 +22,9 @@
 
 ## 使用技術
 
-* Vue CLI 4
+* Vue CLI
 * Vue Router
+* Vuex
 * Vue Components
 * RESTful APIs
 * RWD
