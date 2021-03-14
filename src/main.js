@@ -25,6 +25,7 @@ import './assets/scss/all.scss';
 // 引入自定義 bootstrapvue 顏色
 import './assets/scss/main.scss';
 import thousandsFilter from './filters/thousands';
+import store from './store';
 
 // eslint-disable-next-line no-unused-vars
 router.afterEach((to, from, next) => {
@@ -83,6 +84,8 @@ new Vue({
   created() {
     AOS.init();
   },
+
   router,
+  store,
   render: (h) => h(App),
 }).$mount('#app');
