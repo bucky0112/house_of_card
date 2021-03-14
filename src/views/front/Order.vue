@@ -193,6 +193,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
@@ -233,6 +234,7 @@ export default {
     this.getCart();
   },
   methods: {
+    ...mapActions(['getCartNumber']),
     getCart() {
       const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
@@ -257,7 +259,8 @@ export default {
       this.axios
         .post(url, order)
         .then((res) => {
-          this.$bus.$emit('updateCart');
+          this.getCartNumber();
+          // this.$bus.$emit('updateCart');
           loader.hide();
           this.$toast.success('成功幫您建立訂單囉～');
           this.$router.push(`/checkout/${res.data.data.id}`);

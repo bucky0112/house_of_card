@@ -26,8 +26,11 @@
           </b-nav-item>
           <b-nav-item href="#" to="/Cart" style="font-size: 20px">
             <i class="fas fa-shopping-cart"></i>
-            <b-badge pill variant="danger" v-if="cart.length" class="cart_num">
+            <!-- <b-badge pill variant="danger" v-if="cart.length" class="cart_num">
               {{ cart.length }}
+            </b-badge> -->
+            <b-badge pill variant="danger" v-if="buyItemNumber" class="cart_num">
+              {{ buyItemNumber.length }}
             </b-badge>
           </b-nav-item>
         </b-navbar-nav>
@@ -37,35 +40,41 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
   data() {
     return {
-      cart: {},
+      // cart: {},
+      // searchItem: '',
     };
   },
   created() {
-    this.getCart();
-    this.$bus.$on('updateCart', () => {
-      this.getCart();
-    });
+    // this.getCart();
+    // this.$bus.$on('updateCart', () => {
+    //   this.getCart();
+    // });
+    this.getCartNumber();
   },
   methods: {
-    getCart() {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
-      this.axios
-        .get(url)
-        .then((res) => {
-          this.cart = res.data.data;
-        });
-    },
+    ...mapActions(['getCartNumber']),
+    // getCart() {
+    //   const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
+    //   this.axios.get(url).then((res) => {
+    //     this.cart = res.data.data;
+    //   });
+    // },
+  },
+  computed: {
+    ...mapState(['buyItemNumber']),
   },
 };
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap");
 
-.brand-link h1{
+.brand-link h1 {
   background-image: url("~@/assets/image/slide_logo.png");
   display: inline-block;
   background-size: 90px 44px;

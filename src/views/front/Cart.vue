@@ -128,6 +128,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
@@ -153,6 +154,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['getCartNumber']),
     getCart() {
       const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/shopping`;
@@ -173,9 +175,10 @@ export default {
       this.axios
         .delete(url)
         .then(() => {
-          loader.hide();
-          this.$bus.$emit('updateCart');
+          // this.$bus.$emit('updateCart');
+          this.getCartNumber();
           this.getCart();
+          loader.hide();
         })
         .catch(() => {
           loader.hide();
@@ -188,9 +191,10 @@ export default {
       this.axios
         .delete(url)
         .then(() => {
-          loader.hide();
-          this.$bus.$emit('updateCart');
+          // this.$bus.$emit('updateCart');
+          this.getCartNumber();
           this.getCart();
+          loader.hide();
           this.$toast.success('已刪除商品～');
         })
         .catch(() => {
@@ -209,9 +213,10 @@ export default {
       this.axios
         .patch(url, data)
         .then(() => {
-          loader.hide();
-          this.$bus.$emit('updateCart');
+          this.getCartNumber();
+          // this.$bus.$emit('updateCart');
           this.getCart();
+          loader.hide();
           this.$toast.success('已更新商品數量～');
         })
         .catch(() => {

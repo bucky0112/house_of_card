@@ -76,11 +76,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Banner from '@/components/front/Banner.vue';
 import Pagination from '@/components/Pagination.vue';
 import Footer from '@/components/front/Footer.vue';
 
 export default {
+  name: 'Products',
   components: {
     Banner,
     Pagination,
@@ -106,6 +108,7 @@ export default {
     this.getProducts();
   },
   methods: {
+    ...mapActions(['getCartNumber']),
     getProducts(page = 1) {
       const loader = this.$loading.show();
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_UUID}/ec/products?page=${page}`;
@@ -136,7 +139,8 @@ export default {
       this.axios
         .post(url, cart)
         .then(() => {
-          this.$bus.$emit('updateCart');
+          this.getCartNumber();
+          // this.$bus.$emit('updateCart');
           this.status.loadingItem = '';
           loader.hide();
           this.$toast.success('已加入購物車～');

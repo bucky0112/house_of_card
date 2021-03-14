@@ -141,6 +141,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Footer from '@/components/front/Footer.vue';
 import VueEasyLightbox from 'vue-easy-lightbox';
 
@@ -172,6 +173,7 @@ export default {
     this.getProduct();
   },
   methods: {
+    ...mapActions(['getCartNumber']),
     getProduct() {
       const loader = this.$loading.show();
       const { id } = this.$route.params;
@@ -202,7 +204,8 @@ export default {
         this.axios
           .post(url, cart)
           .then(() => {
-            this.$bus.$emit('updateCart');
+            this.getCartNumber();
+            // this.$bus.$emit('updateCart');
             loader.hide();
             this.$toast.success('已加入購物車～');
           })
