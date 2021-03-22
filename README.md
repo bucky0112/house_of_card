@@ -1,10 +1,10 @@
 # House of Card (桌遊電商)
 
-## Demo
+## Demo Link
 [https://bucky0112.github.io/house_of_card/#/](https://bucky0112.github.io/house_of_card/#/)
 
 ## 簡介
-這是我使用 Vue.js 開發的前端練習作品，主要功能如下：
+這是我使用 Vue.js 開發的前端作品，主要功能如下：
 
 * 前台：
   * 畫面展示（商品分類、單一商品介紹）
@@ -26,7 +26,7 @@
 * Vue Router
 * Vuex
 * Vue Components
-* RESTful APIs
+* RESTful APIs(使用 API 來自六角學院提供)
 * RWD
 * Bootstrap 4
 * JavaScript (ES6)
