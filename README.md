@@ -1,7 +1,7 @@
 # House of Card (桌遊電商)
 
 ## Demo Link
-[https://bucky0112.github.io/house_of_card/#/](https://bucky0112.github.io/house_of_card/#/)
+[https://bucky0112.github.io/house_of_card/#/](https://house-of-card-im5pbgung-bucky0112s-projects.vercel.app/#/)
 
 ## 簡介
 這是我使用 Vue.js 開發的前端作品，主要功能如下：
